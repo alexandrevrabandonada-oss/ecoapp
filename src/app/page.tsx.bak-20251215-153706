@@ -1,0 +1,79 @@
+import Link from "next/link";
+
+export const dynamic = "force-dynamic";
+
+function Card({ title, desc, href, cta }: { title: string; desc: string; href: string; cta: string }) {
+  return (
+    <div className="card">
+      <h2 style={{ marginTop: 0 }}>{title}</h2>
+      <p><small>{desc}</small></p>
+      <div className="toolbar">
+        <Link className="btn btn-primary" href={href}>{cta}</Link>
+      </div>
+    </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <div className="stack">
+      <div className="card">
+        <div className="toolbar" style={{ justifyContent: "space-between" }}>
+          <div>
+            <h1 style={{ margin: 0 }}>ECO</h1>
+            <p style={{ marginTop: 6, marginBottom: 0 }}>
+              <small>Escutar • Cuidar • Organizar</small>
+            </p>
+          </div>
+          <div className="toolbar">
+            <Link className="btn" href="/coleta">Coleta</Link>
+            <Link className="btn" href="/servicos">Serviços</Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid2">
+        <div className="card">
+          <h2>Começar agora</h2>
+          <p><small>Primeiro crie um Serviço (ex: “Coleta Solidária”), depois cadastre Pontos ligados a ele.</small></p>
+          <div className="toolbar">
+            <Link className="btn btn-primary" href="/servicos/novo">+ Novo serviço</Link>
+            <Link className="btn" href="/coleta/novo">+ Novo ponto</Link>
+          </div>
+        </div>
+
+        <div className="card">
+          <h2>Status rápido</h2>
+          <p><small>Agora já temos: API OK + UI base + cadastro de serviços e pontos.</small></p>
+          <hr />
+          <p><small>Próximos upgrades: mapa, botão WhatsApp, horários, e ranking/metas (ECO).</small></p>
+        </div>
+      </div>
+
+      <div className="grid2">
+        <Card
+          title="Coleta (Pontos)"
+          desc="Lista e cadastro de pontos de coleta (endereços/contato/material)."
+          href="/coleta"
+          cta="Abrir Coleta"
+        />
+        <Card
+          title="Serviços (Base)"
+          desc="Serviços/mutirões/organizações que aparecem nos pontos."
+          href="/servicos"
+          cta="Abrir Serviços"
+        />
+      </div>
+
+      <div className="grid2">
+        <Card title="Reparo (em construção)" desc="Oficinas, conserto, reuso, mutirão." href="/reparo" cta="Ver" />
+        <Card title="Feira (em construção)" desc="Feira solidária, trocas e economia local." href="/feira" cta="Ver" />
+      </div>
+
+      <div className="grid2">
+        <Card title="Formação (em construção)" desc="Trilhas, materiais e tarefas práticas." href="/formacao" cta="Ver" />
+        <Card title="Doação (em construção)" desc="Doações, apoio e transparência." href="/doacao" cta="Ver" />
+      </div>
+    </div>
+  );
+}

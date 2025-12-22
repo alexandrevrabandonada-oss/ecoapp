@@ -1,0 +1,83 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+export default function ColetaPage() {
+  const [loading, setLoading] = useState(true);
+  const [points, setPoints] = useState<any[]>([]);
+  const [err, setErr] = useState<string>("");
+
+  async function load() {
+    setErr("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/points", { cache: "no-store" });
+      const j = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(String(j?.error ?? "Falha ao carregar /api/points"));
+      setPoints(Array.isArray(j?.points) ? j.points : []);
+    } catch (e: any) {
+      setErr(e?.message ?? "Erro");
+      setPoints([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => { load(); }, []);
+
+  return (
+    <div>
+      <div className="card pad">
+        <div className="spread">
+          <div>
+            <h1 className="h1">Coleta</h1>
+            <div className="kicker">Pontos ativos cadastrados (com serviço e materiais)</div>
+          </div>
+
+          <div className="row">
+            <button className="btn" onClick={load} type="button">Recarregar</button>
+            <Link href="/coleta/novo" className="btn btn-primary">+ Cadastrar ponto</Link>
+            <Link href="/servicos" className="btn">Gerenciar serviços</Link>
+          </div>
+        </div>
+
+        {loading ? <div className="notice" style={{ marginTop: 12 }}>Carregando…</div> : null}
+        {err ? <div className="notice bad" style={{ marginTop: 12 }}>❌ {err}</div> : null}
+      </div>
+
+      <div className="list">
+        {!loading && !err && points.length === 0 ? (
+          <div className="notice">Ainda não tem pontos cadastrados. Clique em <b>+ Cadastrar ponto</b>.</div>
+        ) : null}
+
+        {points.map((p: any) => (
+          <div key={p.id} className="card pad">
+            <div className="spread">
+              <div>
+                <div className="item-title">{p.title ?? p.name ?? p.nome ?? "Ponto"}</div>
+                <div className="item-sub">
+                  {p.service?.name ? <span>{p.service.name}</span> : <span>Sem serviço</span>}
+                  {(p.address ?? p.endereco) ? <> • {p.address ?? p.endereco}</> : null}
+                  {(p.city ?? p.cidade) ? <> • {p.city ?? p.cidade}</> : null}
+                </div>
+              </div>
+              <div className="row">
+                {p.service?.kind ? <span className="tag green">{p.service.kind}</span> : null}
+                {p.isActive === false ? <span className="tag">inativo</span> : null}
+              </div>
+            </div>
+
+            {Array.isArray(p.materials) && p.materials.length ? (
+              <div className="item-tags">
+                {p.materials.slice(0, 10).map((m: string) => (
+                  <span className="tag" key={m}>{m}</span>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum ServiceKind {
+  COLETA
+  REPARO
+  FEIRA
+  FORMACAO
+  DOACAO
+  OUTRO
+}
+
+enum MaterialKind {
+  PAPEL
+  PAPELAO
+  PET
+  PLASTICO_MISTO
+  ALUMINIO
+  VIDRO
+  FERRO
+  ELETRONICOS
+  OUTRO
+}
+
+model PickupRequest {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  status    PickupRequestStatus  @default(OPEN)
+  receipt   Receipt?
+  ecoReceipt EcoReceipt?
+}
+
+model Service {
+  id        String      @id @default(cuid())
+  kind      ServiceKind
+  name      String
+  slug      String      @unique
+  createdAt DateTime    @default(now())
+  points    Point[]
+}
+
+model Point {
+  id        String  @id @default(cuid())
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id])
+
+  name      String
+  slug      String   @unique
+  address   String
+  city      String
+  lat       Float?
+  lng       Float?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  deliveries   Delivery[]
+  weighings    Weighing[]
+  neighborhood String?
+  hours        String?
+}
+
+model Delivery {
+  id      String @id @default(cuid())
+  pointId String
+  point   Point  @relation(fields: [pointId], references: [id])
+
+  material  MaterialKind
+  notes     String?
+  weightKg  Float?
+  createdAt DateTime     @default(now())
+}
+
+model Weighing {
+  id      String @id @default(cuid())
+  pointId String
+  point   Point  @relation(fields: [pointId], references: [id])
+
+  material  MaterialKind
+  weightKg  Float
+  notes     String?
+  createdAt DateTime     @default(now())
+}
+
+model Receipt {
+  id        String        @id @default(cuid())
+  code      String        @unique
+  createdAt DateTime      @default(now())
+  requestId String        @unique
+  request   PickupRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+}
+
+
+// === ECO: PickupRequestStatus (v0) ===
+enum PickupRequestStatus {
+  OPEN
+  SCHEDULED
+  DONE
+  CANCELED
+}
+
+
+// === ECO: EcoReceipt (Recibo) v0 ===
+model EcoReceipt {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  shareCode String   @unique
+  public    Boolean  @default(false)
+
+  summary   String?
+  items     String?
+  operator  String?
+
+  requestId String   @unique
+  request   PickupRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+}

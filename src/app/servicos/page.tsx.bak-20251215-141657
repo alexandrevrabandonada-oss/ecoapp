@@ -1,0 +1,126 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const KINDS = ["COLETA", "REPARO", "FEIRA", "FORMACAO", "DOACAO", "OUTRO"];
+
+export default function ServicosPage() {
+  const [services, setServices] = useState<any[]>([]);
+  const [name, setName] = useState("");
+  const [kind, setKind] = useState("COLETA");
+  const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  async function load() {
+    setMsg("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/services", { cache: "no-store" });
+      const j = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(String(j?.error ?? "Falha ao carregar serviços"));
+      setServices(Array.isArray(j?.services) ? j.services : []);
+    } catch (e: any) {
+      setMsg("❌ " + (e?.message ?? "Erro"));
+      setServices([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => { load(); }, []);
+
+  async function create() {
+    setMsg("");
+    setSaving(true);
+    try {
+      const res = await fetch("/api/services", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, kind }),
+      });
+      const j = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(String(j?.error ?? "Falha ao criar serviço"));
+      setName("");
+      setKind("COLETA");
+      setMsg("✅ Serviço criado!");
+      await load();
+    } catch (e: any) {
+      setMsg("❌ " + (e?.message ?? "Erro"));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="grid">
+      <section className="col-6">
+        <div className="card pad">
+          <div className="spread">
+            <div>
+              <h1 className="h1">Serviços</h1>
+              <div className="kicker">Ex.: Coleta, Reparo, Feira, Formação…</div>
+            </div>
+            <button className="btn" onClick={load} type="button">Recarregar</button>
+          </div>
+
+          <hr className="sep" />
+
+          <div className="grid">
+            <div className="col-12 field">
+              <div className="label">Nome do serviço</div>
+              <input className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ex.: Coleta — Cooperativa X" />
+            </div>
+
+            <div className="col-12 field">
+              <div className="label">Tipo (kind)</div>
+              <select className="select" value={kind} onChange={(e) => setKind(e.target.value)}>
+                {KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
+              </select>
+            </div>
+
+            <div className="col-12 row">
+              <button className="btn btn-primary" disabled={saving || name.trim().length === 0} onClick={create} type="button">
+                {saving ? "Criando…" : "Criar serviço"}
+              </button>
+              <span className="kicker">Depois você usa esse serviço ao cadastrar um ponto.</span>
+            </div>
+          </div>
+
+          {msg ? (
+            <div className={"notice " + (msg.startsWith("✅") ? "ok" : "bad")} style={{ marginTop: 12 }}>
+              {msg}
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      <section className="col-6">
+        <div className="card pad soft">
+          <div className="spread">
+            <div>
+              <h2 className="h2">Lista</h2>
+              <div className="kicker">{loading ? "Carregando…" : `${services.length} serviço(s)`}</div>
+            </div>
+          </div>
+
+          <div className="list">
+            {services.map((s: any) => (
+              <div key={s.id} className="card pad">
+                <div className="item-title">{s.name}</div>
+                <div className="item-tags">
+                  <span className="tag green">{s.kind ?? "OUTRO"}</span>
+                  {s.slug ? <span className="tag">{s.slug}</span> : null}
+                </div>
+              </div>
+            ))}
+
+            {!loading && services.length === 0 ? (
+              <div className="notice">Ainda não tem serviços cadastrados.</div>
+            ) : null}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

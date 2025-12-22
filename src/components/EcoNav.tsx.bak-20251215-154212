@@ -1,0 +1,29 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const items = [
+  { href: "/", label: "Início", icon: "⌂" },
+  { href: "/coleta", label: "Coleta", icon: "♻" },
+  { href: "/servicos", label: "Serviços", icon: "🧩" },
+  { href: "/mapa", label: "Mapa", icon: "⌖" },
+  { href: "/impacto", label: "Impacto", icon: "◎" },
+];
+
+export default function EcoNav() {
+  const p = usePathname() || "/";
+  return (
+    <nav className="eco-nav" aria-label="Navegação ECO">
+      {items.map((it) => {
+        const active = p === it.href || (it.href !== "/" && p.startsWith(it.href));
+        return (
+          <Link key={it.href} href={it.href} className={"eco-nav-item " + (active ? "active" : "")}>
+            <span className="eco-nav-ico" aria-hidden>{it.icon}</span>
+            <span className="eco-nav-lbl">{it.label}</span>
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}

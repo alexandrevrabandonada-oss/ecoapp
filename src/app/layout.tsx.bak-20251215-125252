@@ -1,0 +1,39 @@
+import "./globals.css";
+import Link from "next/link";
+
+export const metadata = {
+  title: "ECO — Escutar • Cuidar • Organizar",
+  description: "Cadastro de serviços, pontos e coleta comunitária.",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="pt-BR">
+      <body>
+        <header className="header">
+          <div className="header-inner">
+            <div className="brand">
+              <div className="title">
+                <span className="dot" />
+                <span>ECO</span>
+                <span className="badge">Escutar • Cuidar • Organizar</span>
+              </div>
+              <div className="subtitle">Serviços comunitários — coleta, reparo, feira, formação</div>
+            </div>
+
+            <nav className="nav">
+              <Link href="/" className="btn btn-ghost">Início</Link>
+              <Link href="/coleta" className="btn btn-ghost">Coleta</Link>
+              <Link href="/coleta/novo" className="btn btn-primary">+ Ponto</Link>
+              <Link href="/servicos" className="btn btn-ghost">Serviços</Link>
+            </nav>
+          </div>
+        </header>
+
+        <main className="main">
+          <div className="container">{children}</div>
+        </main>
+      </body>
+    </html>
+  );
+}

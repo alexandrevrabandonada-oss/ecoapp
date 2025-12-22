@@ -1,0 +1,63 @@
+import "./globals.css";
+import Link from "next/link";
+
+export const metadata = {
+  title: "ECO — Escutar • Cuidar • Organizar",
+  description: "Cadastro de serviços, pontos e coleta comunitária.",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="pt-BR">
+      <body>
+        <header className="header">
+          <div className="header-inner">
+            <div className="brand">
+              <div className="title">
+                <span className="dot" />
+                <span>ECO</span>
+                <span className="badge">Escutar • Cuidar • Organizar</span>
+              </div>
+              <div className="subtitle">Serviços comunitários — coleta, reparo, feira, formação</div>
+            </div>
+
+            <nav className="nav">
+              <Link href="/" className="btn btn-ghost">Início</Link>
+              <Link href="/coleta" className="btn btn-ghost">Coleta</Link>
+              <Link href="/coleta/novo" className="btn btn-primary">+ Ponto</Link>
+              <Link href="/servicos" className="btn btn-ghost">Serviços</Link>
+            </nav>
+          </div>
+        </header>
+
+        <main className="main">
+          <div className="container">{children}</div>
+        </main>
+{/* ECO_UI_STYLE_START */}
+<style>{
+:root{
+  --bg:#0b0f0d; --text:#e7f3ec; --muted:#a7b6ad; --border:rgba(231,243,236,.12);
+  --green:#22c55e; --radius:16px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Arial}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.container{max-width:1040px;margin:0 auto;padding:20px}
+.header{position:sticky;top:0;z-index:10;background:rgba(11,15,13,.9);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;max-width:1040px;margin:0 auto}
+.brand .title{display:flex;align-items:center;gap:10px;font-weight:900}
+.dot{width:10px;height:10px;border-radius:999px;background:var(--green)}
+.badge{padding:6px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04);font-weight:800}
+.btn-primary{border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.15)}
+.card{border:1px solid var(--border);border-radius:var(--radius);background:rgba(255,255,255,.03);padding:16px}
+}</style>
+{/* ECO_UI_STYLE_END */}
+
+      </body>
+    </html>
+  );
+}

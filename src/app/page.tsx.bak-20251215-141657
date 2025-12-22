@@ -1,0 +1,15 @@
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-neutral-950 text-emerald-300 p-6">
+      <h1 className="text-3xl font-black tracking-tight">ECO • Serviços do Comum</h1>
+      <p className="mt-2 text-emerald-200/80 max-w-xl">
+        MVP: Coleta Seletiva Popular com QR, registro e transparência pública.
+      </p>
+
+      <div className="mt-6 flex gap-3">
+        <a className="px-4 py-2 rounded bg-emerald-300 text-black font-semibold" href="/coleta">Abrir Coleta</a>
+        <a className="px-4 py-2 rounded border border-emerald-300/40" href="/painel">Painel Público</a>
+      </div>
+    </main>
+  );
+}
