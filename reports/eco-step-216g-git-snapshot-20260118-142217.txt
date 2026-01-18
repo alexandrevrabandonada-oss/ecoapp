@@ -1,0 +1,1693 @@
+ECO STEP 216g - git snapshot + commit - 20260118-142217
+
+Root: C:\Projetos\App ECO\eluta-servicos
+Message: ECO: build ok + lint 0 warnings (pickup id + catch vars)
+
+---- git status (before) ----
+ M eslint.config.mjs
+ M next-env.d.ts
+ M next.config.js
+ M package-lock.json
+ M package.json
+ M prisma/schema.prisma
+ M src/app/api/pickup-requests/[id]/route.ts
+ M src/app/api/pickup-requests/route.ts
+ M src/app/api/points/route.ts
+ M src/app/api/receipts/[code]/route.ts
+ M src/app/api/receipts/route.ts
+ M src/app/api/requests/[id]/route.ts
+ M src/app/chamar-coleta/page.tsx
+ M src/app/chamar/sucesso/page.tsx
+ M src/app/coleta/p/[id]/point-detail.tsx
+ M src/app/pedidos/page.tsx
+ M src/app/recibo/[code]/page.tsx
+ M src/app/recibos/page.tsx
+ M src/components/share-bar.tsx
+ M tools/eco-doctor.ps1
+ M tools/eco-smoke.ps1
+ M tsconfig.json
+?? .eslintignore.bak-20260116-221117
+?? eco-step-134c-inline-mapa-no-mural-safe-v0_3
+?? prisma/migrations/
+?? reports/20251222-205917-eco-step-05-emitir-recibo-por-pedido.md
+?? reports/20251222-211426-eco-hotfix-receipts-compile-error.md
+?? reports/20251222-215238-eco-step-07a2-fix-step07-parser.md
+?? reports/20251222-220912-eco-step-07b2-rebuild-pedidos-fechar-ui.md
+?? reports/20251222-221417-eco-step-07c-backcompat-api-requests.md
+?? reports/20251222-221952-eco-step-07d-hotfix-pickup-requests-address.md
+?? reports/20251222-222921-eco-step-07e2-add-fechar-on-sucesso.md
+?? reports/20251223-121701-eco-step-08b-fix-api-requests-alias-to-pickup.md
+?? reports/20251223-124723-eco-step-09-recibo-public-page.md
+?? reports/20251223-125105-eco-step-10-recibo-public-toggle-qrcode.md
+?? reports/20251223-133206-eco-step-10c-prisma-add-receipt-public-robust.md
+?? reports/20251223-135934-eco-step-10d-prisma-cli-migrate-without-npx.md
+?? reports/20251223-141949-eco-step-10e2-recibo-toggle-public-ui-and-api-safe.md
+?? reports/20251223-143707-eco-step-10f-fix-db-drift-pickup-status.md
+?? reports/20251223-144254-eco-step-10g-fix-db-pickup-status-column.md
+?? reports/20251223-145021-eco-step-10h2-ensure-prisma-cli-and-push-safe.md
+?? reports/20251223-145537-eco-step-11-pedidos-actions-fechar-e-ver-recibo.md
+?? reports/20251223-150326-eco-step-12-fix-api-points-slug-required.md
+?? reports/20251223-151217-eco-step-12c-fix-api-points-required-city.md
+?? reports/20251223-152637-eco-step-13c-optional-operator-token-safe.md
+?? reports/20251223-154621-eco-step-14b-fix-api-points-city-required-robust.md
+?? reports/20251223-155729-eco-step-15-harden-api-points-required-defaults.md
+?? reports/20251223-164944-eco-step-16b-harden-receipts-get-public-only-robust.md
+?? reports/20251223-165842-eco-step-16c-fix-receipts-guard-syntax.md
+?? reports/20251223-170941-eco-step-16d-fix-api-points-route-rewrite-safe.md
+?? reports/20251223-171340-eco-step-17-recibo-client-get-with-optional-token.md
+?? reports/20251223-184611-eco-step-18h-attach-receipt-in-pickup-list-wrap-findmany.md
+?? reports/20251223-190751-eco-step-18h2-fix-findmany-type-and-wrap-runtime.md
+?? reports/20251224-144704-eco-step-19-pedidos-show-ver-recibo-link.md
+?? reports/20251224-151424-eco-step-20lite-fix-pickup-requests-type-parse.md
+?? reports/20251224-162824-eco-step-21c2-fix-ui-pedidos-token-inject-safe.md
+?? reports/20251224-163550-eco-step-21c3-dedupe-ecoWithReceipt-in-pickup-requests.md
+?? reports/20251224-171137-eco-step-21d-recover-route-and-receiptlink-client-token.md
+?? reports/20251224-171909-eco-step-21e-fix-pickup-requests-dedupe-reinject.md
+?? reports/20251224-173352-eco-step-22-pickup-requests-receipt-privacy.md
+?? reports/20251224-175503-eco-step-22-pickup-requests-receipt-privacy.md
+?? reports/20251224-175905-eco-step-22b-fix-pickup-requests-privacy-dedupe.md
+?? reports/20251224-180441-eco-step-22c-fix-pickup-requests-privacy-redeclare-var.md
+?? reports/20251224-181145-eco-step-22d-normalize-pickup-requests-dedupe-helpers.md
+?? reports/20251224-182049-eco-step-23-fix-pickup-requests-dedupe-all-helpers.md
+?? reports/20251224-182848-eco-step-23a-operator-panel-and-receiptlink-fetch.md
+?? reports/20251224-183445-eco-step-23b-pedidos-add-operator-shortcut.md
+?? reports/20251224-184339-eco-step-23-issue-receipt-from-pedidos.md
+?? reports/20251224-190401-eco-step-23b-receipt-public-toggle-fix.md
+?? reports/20251224-191917-eco-step-24b-public-receipt-page-safe.md
+?? reports/20251224-193657-eco-step-25-receiptlink-public-aware-and-copylink.md
+?? reports/20251225-162322-eco-step-26-public-receipt-sharebar-copy-wa.md
+?? reports/20251225-163550-eco-step-27-receipt-card-share-endpoint-3x4.md
+?? reports/20251225-181429-eco-step-28c-receipt-share-webshare-and-1x1-safe2.md
+?? reports/20251225-182330-eco-step-29-public-receipt-og-metadata.md
+?? reports/20251225-183544-eco-step-28c-receipt-sharebar-webshare-safe.md
+?? reports/20251225-184636-eco-step-29-receipt-sharepack-text-and-preview.md
+?? reports/20251225-192412-eco-step-28c-receipt-sharebar-webshare-1x1-hardening.md
+?? reports/20251225-193906-eco-step-29-receipt-share-link-copy-whatsapp.md
+?? reports/20251225-202954-eco-step-30-receipt-sharepack-captions.md
+?? reports/20251225-203504-eco-step-31-receipt-sharepack-toast.md
+?? reports/20251225-210035-eco-step-32-receipt-share-url-fallback.md
+?? reports/20251225-212612-eco-step-33-receipt-share-pack-zip.md
+?? reports/20251225-214204-eco-step-28c-receipt-share-webshare-and-1x1-safe-markers.md
+?? reports/20251225-215259-eco-step-29-operator-panel-mvp.md
+?? reports/20251225-221040-eco-step-30-operator-panel-filters-route-export.md
+?? reports/20251225-222113-eco-step-31-operator-triage-kanban.md
+?? reports/20251225-230136-eco-step-32b-operator-triage-route-of-day-safe.md
+?? reports/20251225-230739-eco-step-32c-fix-eco-smoke-triagem.md
+?? reports/20251225-232105-eco-step-33b-pickup-status-and-bulk-safe.md
+?? reports/20251226-134518-eco-step-34-operator-triage-bulk-ui.md
+?? reports/20251226-140346-eco-step-35-operator-triage-day-close-summary.md
+?? reports/20251226-142221-eco-step-36c-operator-day-card-3x4-safe.md
+?? reports/20251226-143812-eco-step-36d-route-day-card-nojsx.md
+?? reports/20251226-144225-eco-step-36e-route-day-card-og-flexfix.md
+?? reports/20251226-145427-eco-step-36f-day-card-1x1-buttons-and-webshare.md
+?? reports/20251226-153726-eco-step-37b-public-day-share-page-safe.md
+?? reports/20251226-154318-eco-step-37c-fix-async-params-headers.md
+?? reports/20251226-162119-eco-step-38c-wire-day-share-link-and-smoke-safe.md
+?? reports/20251226-174239-eco-step-39-share-day-caption-and-smoke.md
+?? reports/20251226-181942-eco-step-40-fix-triage-day-share-block.md
+?? reports/20251226-193232-eco-step-43-share-day-hardening.md
+?? reports/20251226-193705-eco-step-43b-share-day-hardening.md
+?? reports/20251226-201118-eco-step-44-day-close-store-safe.md
+?? reports/20251226-201850-eco-step-45-triagem-shortcut-s-dia.md
+?? reports/20251226-203816-eco-step-46-fix-day-close-autofill.md
+?? reports/20251226-235054-eco-step-48-hotfix-safe-day-card-and-day-close-guard.md
+?? reports/20251227-100854-eco-step-48-fix-route-day-card-display-flex.md
+?? reports/20251227-103704-eco-step-49-bootstrap-tijolos.md
+?? reports/20251227-104358-eco-step-50-prisma-eco-day-close.md
+?? reports/20251227-104954-eco-step-50b-fix-prisma-exec-and-run-migrate.md
+?? reports/20251227-110034-eco-step-50c-prisma-drift-reset-sqlite.md
+?? reports/20251227-111538-eco-step-51-doctor-and-new-tijolo.md
+?? reports/20251227-122933-eco-step-51-prisma-eco-day-close-model-migrate.md
+?? reports/20251227-125553-eco-step-52-day-close-migrate-and-api-upsert.md
+?? reports/20251227-132259-eco-step-53b-fix-day-close-accept-day-d-date.md
+?? reports/20251227-143805-eco-step-54-fix-day-close-safeDay-regex.md
+?? reports/20251227-143914-eco-step-54-fix-day-close-safeDay-regex.md
+?? reports/20260115-195256-cv-b8p3-portals-meta-corenodes.md
+?? reports/20260115-235835-cv-rescue-b8p7.md
+?? reports/ECO-STEP-149-eslint9-lint-hotfix-20260116-221117.md
+?? reports/bootstrap-smoke-20260114-224132.md
+?? reports/eco-diag-repo-scan-v0_4-20260115-231309.md
+?? reports/eco-fix-day-close-parse-v0_1-20251227-144605.md
+?? reports/eco-runner-20260117-163409.md
+?? reports/eco-runner-20260117-163531.md
+?? reports/eco-runner-20260117-165203.md
+?? reports/eco-runner-20260117-170944.md
+?? reports/eco-runner-20260117-174911.md
+?? reports/eco-runner-20260117-174912.md
+?? reports/eco-runner-20260117-180109.md
+?? reports/eco-runner-20260117-180958.md
+?? reports/eco-runner-20260117-180959.md
+?? reports/eco-runner-20260117-181001.md
+?? reports/eco-runner-20260117-184302.md
+?? reports/eco-runner-20260117-184311.md
+?? reports/eco-runner-20260117-184324.md
+?? reports/eco-runner-20260117-184328.md
+?? reports/eco-runner-20260117-191232.md
+?? reports/eco-runner-20260117-191526.md
+?? reports/eco-runner-20260117-191529.md
+?? reports/eco-runner-20260117-201314.md
+?? reports/eco-runner-20260117-202534.md
+?? reports/eco-runner-20260117-202539.md
+?? reports/eco-runner-20260117-203126.md
+?? reports/eco-runner-20260117-204457.md
+?? reports/eco-runner-20260117-204501.md
+?? reports/eco-step-100d-rewrite-points-list2-route-v0_1-20251229-131753.md
+?? reports/eco-step-100e-fix-bare-field-identifiers-v0_1-20251229-132212.md
+?? reports/eco-step-101-fix-pointid-crash-supportbutton-v0_1-20251229-134125.md
+?? reports/eco-step-102-fix-pointid-bareidentifiers-v0_1-20251229-135552.md
+?? reports/eco-step-103-fix-pointactionsinline-pointid-scope-v0_1-20251229-140405.md
+?? reports/eco-step-104-stabilize-points-api-list2-counts-support-prisma-v0_1-20251229-142351.md
+?? reports/eco-step-105-list2-autodetect-pointmodel-nonempty-v0_1-20251229-144506.md
+?? reports/eco-step-106-seed-eco-pontos-dev-v0_1-20251229-152123.md
+?? reports/eco-step-106b-fix-seed-eco-route-robusto-v0_1-20251229-163904.md
+?? reports/eco-step-106c-fix-seed-eco-pragma-string-v0_2-20251229-172255.md
+?? reports/eco-step-106d-rewrite-seed-eco-kind-required-v0_3-20251229-190252.md
+?? reports/eco-step-106e-rewrite-seed-eco-route-stable-v0_1-20251229-191518.md
+?? reports/eco-step-106f2-fix-seed-eco-dmmf-required-v0_2-20251230-125954.md
+?? reports/eco-step-107g-fix-points-list-alias-and-front-safe-v0_1-20251230-163513.md
+?? reports/eco-step-108-add-mural-actions-endpoints-v0_1-20251230-193428.md
+?? reports/eco-step-108-add-mural-actions-endpoints-v0_1-20251230-233241.md
+?? reports/eco-step-108-add-mural-actions-endpoints-v0_1-20260102-130401.md
+?? reports/eco-step-108-add-mural-actions-endpoints-v0_1-20260102-164956.md
+?? reports/eco-step-109-wire-mural-actions-ui-v0_1-20260102-165017.md
+?? reports/eco-step-110-fix-mural-nested-links-and-points2-v0_1-20260102-183430.md
+?? reports/eco-step-111-fix-mural-nav-and-points2-alias-v0_1-20260102-205847.md
+?? reports/eco-step-112-add-create-point-and-ui-v0_3-20260103-182504.md
+?? reports/eco-step-113h-add-point-actions-optimistic-safe-v0_1-20260103-184128.md
+?? reports/eco-step-114-fix-mural-links-inject-actions-v0_1-20260114-101828.md
+?? reports/eco-step-115h-rewrite-points-action-dmmf-safe-v0_1-20260114-103305.md
+?? reports/eco-step-116-add-points2-alias-and-scan-v0_1-20260114-104304.md
+?? reports/eco-step-117-fix-mural-links-and-actions-v0_1-20260114-105608.md
+?? reports/eco-step-118c-fix-muralclient-p-undefined-v0_1-20260114-112039.md
+?? reports/eco-step-119-fix-muralclient-sort-and-base-filters-safe-v0_2-20260114-115613.md
+?? reports/eco-step-119-fix-muralclient-sort-syntax-v0_1-20260114-113826.md
+?? reports/eco-step-120j-upgrade-newpoint-geolocate-safe-v0_3-20260114-122124.md
+?? reports/eco-step-121-mural-readable-mode-v0_1-20260114-122752.md
+?? reports/eco-step-121b-fix-mural-readable-styles-v0_1-20260114-123530.md
+?? reports/eco-step-121c-fix-mural-readable-styles-template-v0_1-20260114-123959.md
+?? reports/eco-step-121g-fix-bootstrap-and-readable-mural-v0_3-20260114-132402.md
+?? reports/eco-step-122-add-eco-mapa-mvp-v0_1-20260114-143100.md
+?? reports/eco-step-123-add-mapa-links-in-mural-v0_1-20260114-144006.md
+?? reports/eco-step-124d-finish-pvar-scan-using-literalpath-v0_1-20260114-151735.md
+?? reports/eco-step-125-fix-it-undefined-mural-v0_1-20260114-152636.md
+?? reports/eco-step-127-fix-p-undefined-openstreetmap-and-sort-auto-v0_1-20260114-173544.md
+?? reports/eco-step-128-fix-mural-referror-guards-v0_1-20260114-190724.md
+?? reports/eco-step-128-fix-mural-referror-guards-v0_1-20260114-191026.md
+?? reports/eco-step-129-remove-osm-inline-links-v0_1-20260114-192003.md
+?? reports/eco-step-130-add-mapa-link-in-actions-safe-v0_1-20260114-192749.md
+?? reports/eco-step-131-mural-readable-contrast-v0_1-20260114-193230.md
+?? reports/eco-step-132-mural-wide-and-autogrid-v0_1-20260114-205239.md
+?? reports/eco-step-133c-mapa-panel-iframe-actions-and-wide-safe-v0_3-20260114-215330.md
+?? reports/eco-step-134e-rewrite-bootstrap-safe-v0_1-20260114-224132.md
+?? reports/eco-step-135-inline-mapa-embed-osm-v0_1-20260114-231755.md
+?? reports/eco-step-136b-wide-shell-mural-mapa-safe-v0_1-20260115-110754.md
+?? reports/eco-step-138b-mural-wide-and-inline-mapa-style-safe-20260115-122426.md
+?? reports/eco-step-139-mural-wide-max-and-map-sticky-safe-v0_1-20260115-125857.md
+?? reports/eco-step-140-mural-splitview-map-sticky-v0_1-20260115-141852.md
+?? reports/eco-step-140b-fix-page-searchparams-mapopen-v0_1-20260115-143457.md
+?? reports/eco-step-140b-inline-fix-20260115-153318.md
+?? reports/eco-step-140c-fix-mural-page-mapopen-and-split-clean-v0_1-20260115-155201.md
+?? reports/eco-step-140d-rewrite-mural-page-canonical-v0_1-20260115-160053.md
+?? reports/eco-step-141-mural-split-wrapper-safe-v0_1-20260115-162852.md
+?? reports/eco-step-142b-fix-mural-map-split-and-dev-webpack-safe-v0_2-20260115-165152.md
+?? reports/eco-step-143-disable-turbopack-fix-invalid-sourcemap-v0_1-20260115-170200.md
+?? reports/eco-step-144-fix-mural-searchparams-promise-v0_1-20260115-171513.md
+?? reports/eco-step-144e-fix-mural-searchparams-promise-v0_1-20260115-174932.md
+?? reports/eco-step-145-fix-dev-and-mural-searchparams-v0_1-20260115-180747.md
+?? reports/eco-step-146-estado-geral-roadmap-diag-v0_1-20260115-224034.md
+?? reports/eco-step-146-mural-map-toggle-and-fix-dev-script-v0_1-20260115-221135.md
+?? reports/eco-step-146b-dev-scripts-and-allowedDevOrigins-v0_1-20260115-195345.md
+?? reports/eco-step-147-contract-snapshot-20260115-234256.md
+?? reports/eco-step-147-contract-snapshot-20260115-234355.md
+?? reports/eco-step-148-hardening-alias-contract-20260116-000117.md
+?? reports/eco-step-148b-verify-smoke-autodev-20260116-000329.md
+?? reports/eco-step-148b-verify-smoke-autodev-20260116-212318.md
+?? reports/eco-step-148b-verify-smoke-autodev-20260116-212512.md
+?? reports/eco-step-148b-verify-smoke-autodev-20260116-213600.md
+?? reports/eco-step-148b-verify-smoke-autodev-20260116-221911.md
+?? reports/eco-step-148b-verify-smoke-autodev-20260116-222900.md
+?? reports/eco-step-149-fix-compile-blockers-20260116-121458.md
+?? reports/eco-step-149-fix-compile-blockers-20260116-123907.md
+?? reports/eco-step-150-fix-build-blockers-20260116-132045.md
+?? reports/eco-step-151-fix-turbopack-7errors-20260116-132547.md
+?? reports/eco-step-152-fix-3parsing-errors-20260116-132855.md
+?? reports/eco-step-153-fix-remaining-parsing-errors-20260116-134739.md
+?? reports/eco-step-154-fix-recibo-patch-string-20260116-135036.md
+?? reports/eco-step-155-fix-routehandler-params-promise-20260116-135431.md
+?? reports/eco-step-156-fix-pickuprequests-id-route-params-promise-20260116-135844.md
+?? reports/eco-step-157-fix-receipts-public-route-params-promise-20260116-141059.md
+?? reports/eco-step-158-fix-receipts-public-code-dup-20260116-141409.md
+?? reports/eco-step-159-fix-actor-cookieheader-20260116-143122.md
+?? reports/eco-step-160-fix-stray-action-token-20260116-143444.md
+?? reports/eco-step-161-fix-nextresponse-import-20260116-143913.md
+?? reports/eco-step-162-fix-prisma-import-20260116-145755.md
+?? reports/eco-step-163-fix-pickuprequest-receipt-ctx-20260116-150932.md
+?? reports/eco-step-164-fix-pickuprequest-receipt-link-20260116-152726.md
+?? reports/eco-step-165-fix-pickuprequest-receipt-nested-create-20260116-153910.md
+?? reports/eco-step-166-fix-pickuprequests-id-route-ctx-20260116-154234.md
+?? reports/eco-step-167-fix-pickuprequests-id-route-ctx-force-20260116-154539.md
+?? reports/eco-step-168-fix-pickuprequests-route-reqname-20260116-155402.md
+?? reports/eco-step-171-fix-pickuprequests-ecoIsOperator-param-20260116-160410.md
+?? reports/eco-step-172-fix-pickuprequests-privacy-block-placement-20260116-175739.md
+?? reports/eco-step-173-fix-pickuprequests-privacy-block-into-get-20260116-180418.md
+?? reports/eco-step-174-fix-pickuprequests-get-param-20260116-181718.md
+?? reports/eco-step-175-move-pickuprequests-privacy-block-after-items-20260116-182343.md
+?? reports/eco-step-176-fix-pickuprequests-triage-sharecode-20260116-184013.md
+?? reports/eco-step-177-fix-api-points-fieldnames-never-20260116-184304.md
+?? reports/eco-step-178-fix-api-points-fieldnames-includes-global-20260116-184845.md
+?? reports/eco-step-179-fix-api-receipts-fieldnames-includes-20260116-185346.md
+?? reports/eco-step-180-fix-api-receipts-root-fieldnames-includes-20260116-185721.md
+?? reports/eco-step-181-fix-api-any-fieldnames-includes-global-20260116-190652.md
+?? reports/eco-step-182-fix-receipts-pickupdoneupdate-cast-20260116-191307.md
+?? reports/eco-step-183-fix-receipt-pack-nextresponse-buffer-20260116-191518.md
+?? reports/eco-step-184-fix-chamarcoleta-headers-20260116-192117.md
+?? reports/eco-step-185-fix-muralacoesclient-num-20260116-192534.md
+?? reports/eco-step-186-fix-muralpointactions-localcounts-20260116-193037.md
+?? reports/eco-step-187b-fix-eco-pontos-id-sharelink-20260116-194543.md
+?? reports/eco-step-188-fix-r-code-headers-await-20260116-200146.md
+?? reports/eco-step-189-fix-operatortriageboard-stray-call-20260116-202016.md
+?? reports/eco-step-190-fix-build-blockers-3x-20260116-204757.md
+?? reports/eco-step-191-fix-receiptpublishbutton-token-header-20260116-205358.md
+?? reports/eco-step-192-fix-receiptsharebar-downloadcard-20260116-205722.md
+?? reports/eco-step-193-fix-receiptsharebar-sharecard-20260116-210111.md
+?? reports/eco-step-194-fix-receiptsharebar-sharecard-20260116-211202.md
+?? reports/eco-step-195-exclude-backups-from-ts-20260116-211725.md
+?? reports/eco-step-196-fix-lint-blockers-148b-20260116-213328.md
+?? reports/eco-step-196b-eslint9-ignores-anypolicy-20260116-224346.md
+?? reports/eco-step-197-unblock-eslint-20260116-230228.md
+?? reports/eco-step-197b-eslint9-flatconfig-20260116-230903.md
+?? reports/eco-step-198e-unblock-eslint9-and-build-20260116-233645.md
+?? reports/eco-step-199-eslint9-minsafe-and-dep-clean-20260116-235619.md
+?? reports/eco-step-200-stabilize-eslint9-and-verify-20260117-112959.md
+?? reports/eco-step-201r-stabilize-eslint9-real-lint-20260117-115018.md
+?? reports/eco-step-202-eslint9-real-lint-minsafe-20260117-120345.md
+?? reports/eco-step-203-eslint9-finalize-real-lint-20260117-125707.md
+?? reports/eco-step-205b-fix-scripts-colon-20260117-155833.md
+?? reports/eco-step-206b-dump-lint-output-20260117-161356.md
+?? reports/eco-step-207b-fix-runner-argv-20260117-163408.md
+?? reports/eco-step-208-runner-stable-20260117-170105.md
+?? reports/eco-step-210-fix-eco-runner-tasks-argv-20260117-171949.md
+?? reports/eco-step-213-rewrite-eco-runner-20260117-184301.md
+?? reports/eco-step-214c3-unusedvars-20260117-191525.md
+?? reports/eco-step-214e-unusedvars-20260117-201313.md
+?? reports/eco-step-214f-repair-parsing-20260117-202534.md
+?? reports/eco-step-215a-unusedvars-remaining-20260117-203125.md
+?? reports/eco-step-215b-zero-warnings-20260117-204457.md
+?? reports/eco-step-215c2-fix-unusedvars-20260117-205003.md
+?? reports/eco-step-215d-zero-warnings-20260117-205432.md
+?? reports/eco-step-216-verify-build-20260117-211925.md
+?? reports/eco-step-216b2-fix-build-catch-e-20260118-122757.md
+?? reports/eco-step-216b3-fix-build-catch-e-20260118-133946.md
+?? reports/eco-step-216c-fix-pickup-id-20260118-134349.md
+?? reports/eco-step-216d-zero-warnings-final-20260118-134946.md
+?? reports/eco-step-216e-fix-catch-param-usage-20260118-140644.md
+?? reports/eco-step-216f-zero-warnings-20260118-141032.md
+?? reports/eco-step-54b-day-close-debug-v0_1-20251227-145118.md
+?? reports/eco-step-55-day-close-ui-v0_1-20251227-151933.md
+?? reports/eco-step-56-day-close-card-v0_1-20251227-153452.md
+?? reports/eco-step-56c-fix-card-og-display-v0_1-20251227-154625.md
+?? reports/eco-step-57-month-close-transparencia-v0_1-20251227-155200.md
+?? reports/eco-step-58-share-pack-v0_1-20251227-163714.md
+?? reports/eco-step-58b-fix-hydration-share-links-v0_1-20251227-164752.md
+?? reports/eco-step-59-month-close-mvp-v0_1-20251227-165528.md
+?? reports/eco-step-60-fix-share-month-params-unwrap-v0_1-20251227-165855.md
+?? reports/eco-step-61-critical-points-mvp-v0_2-20251227-170751.md
+?? reports/eco-step-62-mutirao-from-point-mvp-v0_1-20251227-171601.md
+?? reports/eco-step-63-mutirao-finish-share-card-v0_1-20251227-172126.md
+?? reports/eco-step-64-mutirao-upload-before-after-v0_2-20251227-173500.md
+?? reports/eco-step-65-recibos-hub-v0_1-20251227-173950.md
+?? reports/eco-step-66c-patch-mutirao-client-proofnote-literalpath-v0_1-20251227-180833.md
+?? reports/eco-step-67-point-resolution-reopen-v0_1-20251227-182618.md
+?? reports/eco-step-68-lock-resolve-via-mutirao-and-30d-stats-v0_1-20251227-195656.md
+?? reports/eco-step-69b-mapa-fix-quotes-v0_1-20251227-200525.md
+?? reports/eco-step-70-point-detail-resolve-v0_1-20251227-201110.md
+?? reports/eco-step-71-mutirao-finish-resolve-point-v0_1-20251227-201712.md
+?? reports/eco-step-72-mutirao-finish-upload-before-after-v0_1-20251227-202115.md
+?? reports/eco-step-72d-rewrite-finalizar-page-params-await-v0_1-20251227-203212.md
+?? reports/eco-step-73-mutirao-share-card-v0_1-20251227-203512.md
+?? reports/eco-step-74-mutirao-card-before-after-v0_2-20251227-210250.md
+?? reports/eco-step-75-add-share-buttons-mutirao-pages-v0_1-20251227-210617.md
+?? reports/eco-step-76-mutirao-proof-in-finalize-v0_1-20251227-211224.md
+?? reports/eco-step-77-point-proof-badge-v0_1-20251227-211737.md
+?? reports/eco-step-78-points-list-map-status-markers-v0_1-20251228-133912.md
+?? reports/eco-step-79-resolve-point-manual-v0_1-20251228-134339.md
+?? reports/eco-step-80-share-point-card-v0_1-20251228-135921.md
+?? reports/eco-step-81-mural-do-cuidado-pontos-v0_1-20251228-153144.md
+?? reports/eco-step-82-share-point-card-v0_1-20251228-153824.md
+?? reports/eco-step-83-point-reactions-actions-v0_1-20251228-154825.md
+?? reports/eco-step-84-mural-acoes-view-v0_1-20251228-155402.md
+?? reports/eco-step-85b-mural-integrar-actionbar-fix-addRange-v0_1-20251228-160547.md
+?? reports/eco-step-86b-confirmado-badge-ui-smart-v0_1-20251228-164150.md
+?? reports/eco-step-87-mural-topo-fixo-v0_1-20251228-171731.md
+?? reports/eco-step-87b-fix-mural-page-p-div-nesting-v0_1-20251228-172010.md
+?? reports/eco-step-87c-rewrite-mural-page-safe-v0_1-20251228-172318.md
+?? reports/eco-step-88-mural-topbar-client-v0_1-20251228-172644.md
+?? reports/eco-step-89-mural-topbar-transparencia-v0_1-20251228-173212.md
+?? reports/eco-step-90-mural-strong-light-actions-v0_1-20251228-181244.md
+?? reports/eco-step-91-mural-chamados-topbar-wa-safe-v0_1-20251228-181718.md
+?? reports/eco-step-91b-fix-mural-imports-default-v0_1-20251228-181954.md
+?? reports/eco-step-92b-confirmado-badge-actionsinline-v0_1-20251228-183154.md
+?? reports/eco-step-92c-mural-confirmado-badge-counts-v0_2-20251228-184247.md
+?? reports/eco-step-93-mural-confirmados-view-v0_1-20251228-184605.md
+?? reports/eco-step-94-mural-api-confirm-counts-v0_1-20251228-184924.md
+?? reports/eco-step-95-fix-points-list2-unterminated-string-v0_2-20251228-185931.md
+?? reports/eco-step-95-fix-points-list2-unterminated-string-v0_4-20251228-191938.md
+?? reports/eco-step-96-points-alias-route-v0_1-20251228-192425.md
+?? reports/eco-step-97-fix-points-list2-and-confirmados-v0_1-20251228-200527.md
+?? reports/eco-step-98-confirm-badge-and-points-alias-v0_1-20251228-201051.md
+?? reports/eco-step-99-point-support-action-v0_1-20251228-201947.md
+?? reports/eco-step-99c-fix-support-relation-and-list2-strings-v0_2-20251228-204208.md
+?? src/app/api/dev/
+?? src/app/api/eco/
+?? src/app/api/pickup-requests/[id]/receipt/
+?? src/app/api/pickup-requests/bulk/
+?? src/app/api/pickup-requests/triage/
+?? src/app/api/receipts/[code]/public/
+?? src/app/api/receipts/public/
+?? src/app/api/requests/route.ts
+?? src/app/api/share/
+?? src/app/eco/
+?? src/app/operador/
+?? src/app/pedidos/fechar/
+?? src/app/r/
+?? src/app/recibo/[code]/recibo-client.tsx
+?? src/app/s/
+?? src/components/eco/
+?? src/lib/eco/
+?? src/lib/v2/
+?? tools/ECO-STEP-149-eslint9-lint-hotfix-v0_1.ps1
+?? tools/SEU-SCRIPT.ps1
+?? tools/TIJOLOS.md
+?? tools/_bootstrap.ps1
+?? tools/_eco-lib.ps1
+?? tools/_step-template.ps1
+?? tools/_tijolo-template.ps1
+?? tools/cv-b8p3-portals-meta-corenodes-v0_1.ps1
+?? tools/cv-rescue-b8hz-v2-lint-warnings-and-verify-v0_1.ps1
+?? tools/cv-rescue-b8p7-bootstrap-fix-v0_1.ps1
+?? tools/eco-diag-repo-scan-v0_1.ps1
+?? tools/eco-diag-repo-scan-v0_2.ps1
+?? tools/eco-diag-repo-scan-v0_3.ps1
+?? tools/eco-diag-repo-scan-v0_4.ps1
+?? tools/eco-fix-day-close-parse-v0_1.ps1
+?? tools/eco-hotfix-38f-run.ps1
+?? tools/eco-hotfix-38g-fix-triage-step38-block-and-route-day-card.ps1
+?? tools/eco-hotfix-receipts-compile-error.ps1
+?? tools/eco-runner.ps1
+?? tools/eco-smoke-share-day.ps1
+?? tools/eco-step-05-emitir-recibo-por-pedido.ps1
+?? tools/eco-step-07-pedidos-fechar-ui.ps1
+?? tools/eco-step-07a-hotfix-parser-backticks.ps1
+?? tools/eco-step-07a2-fix-step07-parser.ps1
+?? tools/eco-step-07b2-rebuild-pedidos-fechar-ui.ps1
+?? tools/eco-step-07c-backcompat-api-requests.ps1
+?? tools/eco-step-07d-hotfix-pickup-requests-address.ps1
+?? tools/eco-step-07e2-add-fechar-on-sucesso.ps1
+?? tools/eco-step-08b-fix-api-requests-alias-to-pickup.ps1
+?? tools/eco-step-09-recibo-public-page.ps1
+?? tools/eco-step-10-recibo-public-toggle-qrcode.ps1
+?? tools/eco-step-100-fix-list2-confirm-groupby-field-v0_1.ps1
+?? tools/eco-step-100-fix-list2-confirm-groupby-field-v0_2.ps1
+?? tools/eco-step-100-fix-list2-confirm-groupby-field-v0_3.ps1
+?? tools/eco-step-100-fix-list2-groupby-and-support-schema-v0_1.ps1
+?? tools/eco-step-100d-rewrite-points-list2-route-v0_1.ps1
+?? tools/eco-step-100e-fix-bare-field-identifiers-v0_1.ps1
+?? tools/eco-step-101-fix-pointid-crash-supportbutton-v0_1.ps1
+?? tools/eco-step-101-point-replicar-action-v0_1.ps1
+?? tools/eco-step-102-fix-pointid-bareidentifiers-v0_1.ps1
+?? tools/eco-step-103-fix-pointactionsinline-pointid-scope-v0_1.ps1
+?? tools/eco-step-104-stabilize-points-api-list2-counts-support-prisma-v0_1.ps1
+?? tools/eco-step-105-list2-autodetect-pointmodel-nonempty-v0_1.ps1
+?? tools/eco-step-106-seed-eco-pontos-dev-v0_1.ps1
+?? tools/eco-step-106b-fix-seed-eco-route-robusto-v0_1.ps1
+?? tools/eco-step-106c-fix-seed-eco-pragma-string-v0_1.ps1
+?? tools/eco-step-106c-fix-seed-eco-pragma-string-v0_2.ps1
+?? tools/eco-step-106d-rewrite-seed-eco-kind-required-v0_1.ps1
+?? tools/eco-step-106d-rewrite-seed-eco-kind-required-v0_2.ps1
+?? tools/eco-step-106d-rewrite-seed-eco-kind-required-v0_3.ps1
+?? tools/eco-step-106e-rewrite-seed-eco-route-stable-v0_1.ps1
+?? tools/eco-step-106f2-fix-seed-eco-dmmf-required-v0_2.ps1
+?? tools/eco-step-107g-fix-points-list-alias-and-front-safe-v0_1.ps1
+?? tools/eco-step-10b-prisma-add-receipt-public.ps1
+?? tools/eco-step-10c-prisma-add-receipt-public-robust.ps1
+?? tools/eco-step-10d-prisma-cli-migrate-without-npx.ps1
+?? tools/eco-step-10e2-recibo-toggle-public-ui-and-api-safe.ps1
+?? tools/eco-step-10f-fix-db-drift-pickup-status.ps1
+?? tools/eco-step-10g-fix-db-pickup-status-column.ps1
+?? tools/eco-step-10h-ensure-prisma-cli-and-push.ps1
+?? tools/eco-step-10h2-ensure-prisma-cli-and-push-safe.ps1
+?? tools/eco-step-11-pedidos-actions-fechar-e-ver-recibo.ps1
+?? tools/eco-step-112-add-create-point-and-ui-v0_1.ps1
+?? tools/eco-step-112-add-create-point-and-ui-v0_2.ps1
+?? tools/eco-step-112-add-create-point-and-ui-v0_3.ps1
+?? tools/eco-step-113-add-point-actions-optimistic-v0_1.ps1
+?? tools/eco-step-113h-add-point-actions-optimistic-safe-v0_1.ps1
+?? tools/eco-step-116-add-points2-alias-and-scan-v0_1.ps1
+?? tools/eco-step-117-fix-mural-links-and-actions-v0_1.ps1
+?? tools/eco-step-119-fix-muralclient-sort-and-base-filters-safe-v0_2.ps1
+?? tools/eco-step-119-fix-muralclient-sort-and-base-filters-v0_1.ps1
+?? tools/eco-step-119-fix-muralclient-sort-syntax-v0_1.ps1
+?? tools/eco-step-12-fix-api-points-slug-required.ps1
+?? tools/eco-step-120-upgrade-newpoint-geolocate-v0_1.ps1
+?? tools/eco-step-120i-upgrade-newpoint-geolocate-safe-v0_2.ps1
+?? tools/eco-step-120j-upgrade-newpoint-geolocate-safe-v0_3.ps1
+?? tools/eco-step-121-bootstrap-and-mapa-v0_1.ps1
+?? tools/eco-step-121-mural-readable-mode-v0_1.ps1
+?? tools/eco-step-121b-fix-mural-readable-styles-v0_1.ps1
+?? tools/eco-step-121c-fix-mural-readable-styles-template-v0_1.ps1
+?? tools/eco-step-121e-fix-bootstrap-and-readable-mural-v0_1.ps1
+?? tools/eco-step-121f-fix-bootstrap-and-readable-mural-v0_2.ps1
+?? tools/eco-step-121g-fix-bootstrap-and-readable-mural-v0_3.ps1
+?? tools/eco-step-122-add-eco-mapa-mvp-v0_1.ps1
+?? tools/eco-step-123-add-mapa-links-in-mural-v0_1.ps1
+?? tools/eco-step-124-fix-p-undefined-and-bootstrap-safe-v0_1.ps1
+?? tools/eco-step-124c-fix-p-undefined-mapa-links-and-rewrite-bootstrap-v0_1.ps1
+?? tools/eco-step-124d-finish-pvar-scan-using-literalpath-v0_1.ps1
+?? tools/eco-step-125-fix-it-undefined-mural-v0_1.ps1
+?? tools/eco-step-126-fix-muralclient-openstreetmap-var-auto-v0_1.ps1
+?? tools/eco-step-127-fix-p-undefined-openstreetmap-and-sort-auto-v0_1.ps1
+?? tools/eco-step-129-remove-osm-inline-links-v0_1.ps1
+?? tools/eco-step-12c-fix-api-points-required-city.ps1
+?? tools/eco-step-132-mural-wide-and-autogrid-v0_1.ps1
+?? tools/eco-step-133-mapa-panel-iframe-actions-and-wide-v0_1.ps1
+?? tools/eco-step-133b-mapa-panel-iframe-actions-and-wide-safe-v0_2.ps1
+?? tools/eco-step-133c-mapa-panel-iframe-actions-and-wide-safe-v0_3.ps1
+?? tools/eco-step-134-inline-mapa-no-mural-v0_1.ps1
+?? tools/eco-step-134b-inline-mapa-no-mural-safe-v0_2.ps1
+?? tools/eco-step-134c-inline-mapa-no-mural-safe-v0_3.ps1
+?? tools/eco-step-134d-fix-bootstrap-writeutf8-newreport-v0_1.ps1
+?? tools/eco-step-134e-rewrite-bootstrap-safe-v0_1.ps1
+?? tools/eco-step-135-inline-mapa-embed-osm-v0_1.ps1
+?? tools/eco-step-136-wide-shell-mural-mapa-v0_1.ps1
+?? tools/eco-step-136b-wide-shell-mural-mapa-safe-v0_1.ps1
+?? tools/eco-step-137-inline-mapa-focus-links-v0_1.ps1
+?? tools/eco-step-137b-inline-mapa-focus-links-safe-v0_1.ps1
+?? tools/eco-step-138-mural-wide-and-inline-mapa-style-v0_1.ps1
+?? tools/eco-step-138b-mural-wide-and-inline-mapa-style-safe-v0_2.ps1
+?? tools/eco-step-139-mural-desktop-grid-sticky-mapa-v0_1.ps1
+?? tools/eco-step-139-mural-wide-max-and-map-sticky-safe-v0_1.ps1
+?? tools/eco-step-139c-mural-wide-sticky-map-safe-v0_1.ps1
+?? tools/eco-step-139d-mural-wide-sticky-map-safe-v0_2.ps1
+?? tools/eco-step-139e-mural-wide-sticky-map-safe-v0_3.ps1
+?? tools/eco-step-13c-optional-operator-token-safe.ps1
+?? tools/eco-step-14-fix-api-points-city-required.ps1
+?? tools/eco-step-140c-fix-mural-page-mapopen-and-split-clean-v0_1.ps1
+?? tools/eco-step-140d-rewrite-mural-page-canonical-v0_1.ps1
+?? tools/eco-step-141-mural-split-wrapper-safe-v0_1.ps1
+?? tools/eco-step-142-fix-mural-map-split-and-dev-webpack-v0_1.ps1
+?? tools/eco-step-142b-fix-mural-map-split-and-dev-webpack-safe-v0_2.ps1
+?? tools/eco-step-143-disable-turbopack-fix-invalid-sourcemap-v0_1.ps1
+?? tools/eco-step-144-fix-mural-searchparams-promise-v0_1.ps1
+?? tools/eco-step-144e-fix-mural-searchparams-promise-v0_1.ps1
+?? tools/eco-step-145-fix-dev-and-mural-searchparams-v0_1.ps1
+?? tools/eco-step-146-mural-map-toggle-and-fix-dev-script-v0_1.ps1
+?? tools/eco-step-146b-dev-scripts-and-allowedDevOrigins-v0_1.ps1
+?? tools/eco-step-147-contract-snapshot-v0_2.ps1
+?? tools/eco-step-147-contract-snapshot-v0_3.ps1
+?? tools/eco-step-147-contract-snapshot-v0_4.ps1
+?? tools/eco-step-148-hardening-alias-contract-v0_1.ps1
+?? tools/eco-step-148-hardening-alias-contract-v0_2.ps1
+?? tools/eco-step-148b-verify-and-smoke-autodev-v0_1.ps1
+?? tools/eco-step-149-fix-compile-blockers-v0_2.ps1
+?? tools/eco-step-149-fix-compile-blockers-v0_3.ps1
+?? tools/eco-step-14b-fix-api-points-city-required-robust.ps1
+?? tools/eco-step-15-harden-api-points-required-defaults.ps1
+?? tools/eco-step-150-fix-build-blockers-v0_1.ps1
+?? tools/eco-step-150-fix-build-blockers-v0_2.ps1
+?? tools/eco-step-150-fix-build-blockers-v0_3.ps1
+?? tools/eco-step-151-fix-turbopack-7errors-v0_1.ps1
+?? tools/eco-step-152-fix-3parsing-errors-v0_1.ps1
+?? tools/eco-step-153-fix-remaining-parsing-errors-v0_1.ps1
+?? tools/eco-step-154-fix-recibo-patch-string-v0_1.ps1
+?? tools/eco-step-155-fix-routehandler-params-promise-v0_1.ps1
+?? tools/eco-step-156-fix-pickuprequests-id-route-params-promise-v0_1.ps1
+?? tools/eco-step-157-fix-receipts-public-route-params-promise-v0_1.ps1
+?? tools/eco-step-158-fix-receipts-public-code-dup-v0_1.ps1
+?? tools/eco-step-159-fix-actor-cookieheader-v0_1.ps1
+?? tools/eco-step-159-fix-actor-cookieheader-v0_2.ps1
+?? tools/eco-step-16-harden-receipts-get-public-only.ps1
+?? tools/eco-step-160-fix-stray-action-token-v0_1.ps1
+?? tools/eco-step-161-fix-nextresponse-import-points-route-v0_1.ps1
+?? tools/eco-step-162-fix-prisma-import-points-route-v0_1.ps1
+?? tools/eco-step-163-fix-pickuprequest-receipt-ctx-v0_1.ps1
+?? tools/eco-step-163-fix-pickuprequest-receipt-ctx-v0_2.ps1
+?? tools/eco-step-164-fix-pickuprequest-receipt-link-v0_1.ps1
+?? tools/eco-step-164-fix-pickuprequest-receipt-link-v0_2.ps1
+?? tools/eco-step-165-fix-pickuprequest-receipt-nested-create-v0_1.ps1
+?? tools/eco-step-166-fix-pickuprequests-id-route-ctx-v0_1.ps1
+?? tools/eco-step-167-fix-pickuprequests-id-route-ctx-force-v0_1.ps1
+?? tools/eco-step-168-fix-pickuprequests-route-reqname-v0_1.ps1
+?? tools/eco-step-168-fix-pickuprequests-route-reqname-v0_2.ps1
+?? tools/eco-step-169-fix-pickuprequests-privacy-block-scope-v0_1.ps1
+?? tools/eco-step-16b-harden-receipts-get-public-only-robust.ps1
+?? tools/eco-step-16c-fix-receipts-guard-syntax.ps1
+?? tools/eco-step-16d-fix-api-points-route-rewrite-safe.ps1
+?? tools/eco-step-17-recibo-client-get-with-optional-token.ps1
+?? tools/eco-step-170-fix-pickuprequests-privacy-scope-robust-v0_1.ps1
+?? tools/eco-step-171-fix-pickuprequests-ecoIsOperator-param-v0_1.ps1
+?? tools/eco-step-173-fix-pickuprequests-privacy-block-into-get-v0_1.ps1
+?? tools/eco-step-174-fix-pickuprequests-get-param-v0_1.ps1
+?? tools/eco-step-175-move-pickuprequests-privacy-block-after-items-v0_1.ps1
+?? tools/eco-step-176-fix-pickuprequests-triage-sharecode-v0_1.ps1
+?? tools/eco-step-176-fix-pickuprequests-triage-sharecode-v0_2.ps1
+?? tools/eco-step-177-fix-api-points-fieldnames-never-v0_1.ps1
+?? tools/eco-step-178-fix-api-points-fieldnames-includes-global-v0_1.ps1
+?? tools/eco-step-179-fix-api-receipts-fieldnames-includes-v0_1.ps1
+?? tools/eco-step-18-pedidos-loop-attach-receipts-in-pickup-list.ps1
+?? tools/eco-step-180-fix-api-receipts-root-fieldnames-includes-v0_1.ps1
+?? tools/eco-step-181-fix-api-any-fieldnames-includes-global-v0_1.ps1
+?? tools/eco-step-182-fix-receipts-pickupdoneupdate-cast-v0_1.ps1
+?? tools/eco-step-183-fix-receipt-pack-nextresponse-buffer-v0_1.ps1
+?? tools/eco-step-184-fix-chamarcoleta-headers-v0_1.ps1
+?? tools/eco-step-185-fix-muralacoesclient-num-v0_1.ps1
+?? tools/eco-step-186-fix-muralpointactions-localcounts-v0_1.ps1
+?? tools/eco-step-187-fix-eco-pontos-id-sharelink-v0_1.ps1
+?? tools/eco-step-187b-fix-eco-pontos-id-sharelink-literalpath-v0_1.ps1
+?? tools/eco-step-189-fix-operatortriageboard-stray-call-v0_1.ps1
+?? tools/eco-step-18b-pedidos-loop-attach-receipts-in-pickup-list-safe.ps1
+?? tools/eco-step-18c-pedidos-attach-receipts-safe.ps1
+?? tools/eco-step-18d-attach-receipt-in-pickup-list-by-include-safe.ps1
+?? tools/eco-step-18e-attach-receipt-wrap-findmany-robust.ps1
+?? tools/eco-step-18e2-attach-receipt-wrap-findmany-robust-safe.ps1
+?? tools/eco-step-18f-attach-receipt-findmany-anywhere-safe.ps1
+?? tools/eco-step-18g-attach-receipts-in-pickup-list-postprocess-safe.ps1
+?? tools/eco-step-18h-attach-receipt-in-pickup-list-wrap-findmany.ps1
+?? tools/eco-step-18h2-fix-findmany-type-and-wrap-runtime.ps1
+?? tools/eco-step-19-pedidos-show-ver-recibo-link.ps1
+?? tools/eco-step-191-fix-receiptpublishbutton-token-header-v0_1.ps1
+?? tools/eco-step-192-fix-receiptsharebar-downloadcard-v0_1.ps1
+?? tools/eco-step-193-fix-receiptsharebar-sharecard-v0_1.ps1
+?? tools/eco-step-194-fix-receiptsharebar-sharecard-v0_1.ps1
+?? tools/eco-step-194-fix-receiptsharebar-sharecard-v0_2.ps1
+?? tools/eco-step-195-exclude-backups-from-ts-v0_1.ps1
+?? tools/eco-step-196-eslint9-ignores-and-any-policy-v0_1.ps1
+?? tools/eco-step-196b-eslint9-ignores-and-any-policy-v0_2.ps1
+?? tools/eco-step-197-unblock-eslint-errors-v0_1.ps1
+?? tools/eco-step-197b-fix-eslint9-flatconfig-v0_1.ps1
+?? tools/eco-step-198e-unblock-eslint9-and-build-v0_1.ps1
+?? tools/eco-step-199-eslint9-minsafe-and-dep-clean-v0_1.ps1
+?? tools/eco-step-200-stabilize-eslint9-and-verify-v0_1.ps1
+?? tools/eco-step-201-stabilize-eslint9-real-lint-v0_1.ps1
+?? tools/eco-step-201r-stabilize-eslint9-real-lint-v0_1.ps1
+?? tools/eco-step-202-eslint9-real-lint-minsafe-v0_1.ps1
+?? tools/eco-step-203-eslint9-finalize-real-lint-v0_1.ps1
+?? tools/eco-step-205-eslint9-bootstrap-runner-v0_1.ps1
+?? tools/eco-step-205b-fix-package-scripts-colon-v0_1.ps1
+?? tools/eco-step-206-fix-npm-runner-args-v0_1.ps1
+?? tools/eco-step-206b-dump-lint-output-v0_1.ps1
+?? tools/eco-step-207-fix-runner-argv-v0_1.ps1
+?? tools/eco-step-207b-fix-runner-argv-v0_1.ps1
+?? tools/eco-step-208-eslint-minsafe-noempty-finally-v0_1.ps1
+?? tools/eco-step-208-runner-stable-v0_1.ps1
+?? tools/eco-step-209-fix-eco-runner-tasks-v0_1.ps1
+?? tools/eco-step-20lite-fix-pickup-requests-type-parse.ps1
+?? tools/eco-step-21-foundation-lib.ps1
+?? tools/eco-step-21-pickup-requests-attach-receipt-and-pedidos-token.ps1
+?? tools/eco-step-210-fix-eco-runner-tasks-argv-v0_1.ps1
+?? tools/eco-step-212-fix-eslint-no-empty-blocks-v0_1.ps1
+?? tools/eco-step-212-rewrite-eco-runner-final-v0_1.ps1
+?? tools/eco-step-212-rewrite-eco-runner-v0_2.ps1
+?? tools/eco-step-213-rewrite-eco-runner-argv-fix-v0_1.ps1
+?? tools/eco-step-214-lint-hygiene-unusedvars-v0_1.ps1
+?? tools/eco-step-214b-lint-hygiene-unusedvars-v0_2.ps1
+?? tools/eco-step-214c-autofix-unusedvars-v0_1.ps1
+?? tools/eco-step-214c2-autofix-unusedvars-live-v0_2.ps1
+?? tools/eco-step-214c3-unusedvars-livefix-v0_3.ps1
+?? tools/eco-step-214d-fix-unusedvars-prefixunderscore-v0_1.ps1
+?? tools/eco-step-214e-fix-unusedvars-prefixunderscore-v0_1.ps1
+?? tools/eco-step-214f-repair-parsing-errors-v0_1.ps1
+?? tools/eco-step-215a-fix-unusedvars-remaining-v0_1.ps1
+?? tools/eco-step-215b-zero-warnings-v0_1.ps1
+?? tools/eco-step-215c-fix-unusedvars-and-stable-verify-v0_1.ps1
+?? tools/eco-step-215c2-fix-unusedvars-and-stable-verify-v0_2.ps1
+?? tools/eco-step-215d-zero-warnings-robust-v0_1.ps1
+?? tools/eco-step-216-verify-build-and-git-snapshot-v0_1.ps1
+?? tools/eco-step-216b-fix-build-catch-e-v0_1.ps1
+?? tools/eco-step-216b2-fix-build-catch-e-v0_2.ps1
+?? tools/eco-step-216b3-fix-build-catch-e-and-verify-v0_3.ps1
+?? tools/eco-step-216c-fix-pickup-requests-id-v0_1.ps1
+?? tools/eco-step-216d-zero-warnings-final-v0_1.ps1
+?? tools/eco-step-216e-fix-catch-param-usage-and-verify-v0_1.ps1
+?? tools/eco-step-216f-zero-warnings-report-route-v0_1.ps1
+?? tools/eco-step-216g-git-snapshot-and-commit-v0_1.ps1
+?? tools/eco-step-216g-git-snapshot-and-commit-v0_2.ps1
+?? tools/eco-step-216g-git-snapshot-and-commit-v0_3.ps1
+?? tools/eco-step-216g-git-snapshot-and-commit-v0_4.ps1
+?? tools/eco-step-216g-git-snapshot-and-commit-v0_5.ps1
+?? tools/eco-step-21b-pickup-requests-attach-receipt-and-pedidos-token-safe.ps1
+?? tools/eco-step-21c-pickup-requests-attach-receipt-and-pedidos-token-placeholder-safe.ps1
+?? tools/eco-step-21c2-fix-ui-pedidos-token-inject-safe.ps1
+?? tools/eco-step-21c3-dedupe-ecoWithReceipt-in-pickup-requests.ps1
+?? tools/eco-step-21d-recover-route-and-receiptlink-client-token.ps1
+?? tools/eco-step-21e-fix-pickup-requests-dedupe-reinject.ps1
+?? tools/eco-step-22-pickup-requests-receipt-privacy.ps1
+?? tools/eco-step-22b-fix-pickup-requests-privacy-dedupe.ps1
+?? tools/eco-step-22c-fix-pickup-requests-privacy-redeclare-var.ps1
+?? tools/eco-step-22d-normalize-pickup-requests-dedupe-helpers.ps1
+?? tools/eco-step-23-fix-pickup-requests-dedupe-all-helpers.ps1
+?? tools/eco-step-23-issue-receipt-from-pedidos.ps1
+?? tools/eco-step-23-receipt-public-toggle.ps1
+?? tools/eco-step-23a-operator-panel-and-receiptlink-fetch.ps1
+?? tools/eco-step-23b-pedidos-add-operator-shortcut.ps1
+?? tools/eco-step-23b-receipt-public-toggle-fix.ps1
+?? tools/eco-step-24-public-receipt-page.ps1
+?? tools/eco-step-24b-public-receipt-page-safe.ps1
+?? tools/eco-step-25-receiptlink-public-aware-and-copylink.ps1
+?? tools/eco-step-26-public-receipt-sharebar-copy-wa.ps1
+?? tools/eco-step-27-receipt-card-share-endpoint-3x4.ps1
+?? tools/eco-step-28b-receipt-share-webshare-and-1x1-safe.ps1
+?? tools/eco-step-28c-receipt-share-webshare-and-1x1-safe-markers.ps1
+?? tools/eco-step-28c-receipt-share-webshare-and-1x1-safe2.ps1
+?? tools/eco-step-28c-receipt-sharebar-webshare-1x1-hardening.ps1
+?? tools/eco-step-28c-receipt-sharebar-webshare-safe.ps1
+?? tools/eco-step-29-operator-panel-mvp.ps1
+?? tools/eco-step-29-public-receipt-og-metadata.ps1
+?? tools/eco-step-29-receipt-share-link-copy-whatsapp.ps1
+?? tools/eco-step-29-receipt-sharepack-text-and-preview.ps1
+?? tools/eco-step-30-operator-panel-filters-route-export.ps1
+?? tools/eco-step-30-receipt-sharepack-captions.ps1
+?? tools/eco-step-31-operator-triage-kanban.ps1
+?? tools/eco-step-31-receipt-sharepack-toast.ps1
+?? tools/eco-step-32-operator-triage-route-of-day.ps1
+?? tools/eco-step-32-receipt-share-url-fallback.ps1
+?? tools/eco-step-32b-operator-triage-route-of-day-safe.ps1
+?? tools/eco-step-32c-fix-eco-smoke-triagem.ps1
+?? tools/eco-step-33-pickup-status-and-bulk.ps1
+?? tools/eco-step-33-receipt-share-pack-zip.ps1
+?? tools/eco-step-33b-pickup-status-and-bulk-safe.ps1
+?? tools/eco-step-34-operator-triage-bulk-ui.ps1
+?? tools/eco-step-35-operator-triage-day-close-summary.ps1
+?? tools/eco-step-36c-operator-day-card-3x4-safe.ps1
+?? tools/eco-step-36d-route-day-card-nojsx.ps1
+?? tools/eco-step-36e-route-day-card-og-flexfix.ps1
+?? tools/eco-step-36f-day-card-1x1-buttons-and-webshare.ps1
+?? tools/eco-step-37-public-day-share-page.ps1
+?? tools/eco-step-37b-public-day-share-page-safe.ps1
+?? tools/eco-step-37c-fix-async-params-headers.ps1
+?? tools/eco-step-38b-wire-day-share-link-and-smoke-safe.ps1
+?? tools/eco-step-38c-wire-day-share-link-and-smoke-safe.ps1
+?? tools/eco-step-39-share-day-caption-and-smoke.ps1
+?? tools/eco-step-40-fix-triage-day-share-block.ps1
+?? tools/eco-step-43-share-day-hardening.ps1
+?? tools/eco-step-43b-share-day-hardening.ps1
+?? tools/eco-step-44-day-close-store.safe.ps1
+?? tools/eco-step-45-triagem-shortcut-s-dia.ps1
+?? tools/eco-step-46-fix-day-close-autofill.ps1
+?? tools/eco-step-48-fix-route-day-card-display-flex.ps1
+?? tools/eco-step-48-hotfix-safe-day-card-and-day-close-guard.ps1
+?? tools/eco-step-49-bootstrap-tijolos.ps1
+?? tools/eco-step-50-prisma-eco-day-close.ps1
+?? tools/eco-step-50b-fix-prisma-exec-and-run-migrate.ps1
+?? tools/eco-step-50c-prisma-drift-reset-sqlite.ps1
+?? tools/eco-step-51-doctor-and-new-tijolo.ps1
+?? tools/eco-step-51-prisma-eco-day-close-model-migrate.ps1
+?? tools/eco-step-52-day-close-migrate-and-api-upsert.ps1
+?? tools/eco-step-53-fix-day-close-accept-day-d-date.ps1
+?? tools/eco-step-53b-fix-day-close-accept-day-d-date.ps1
+?? tools/eco-step-54-fix-day-close-safeDay-regex.ps1
+?? tools/eco-step-54-fix-safeDay-normalize-day-close.ps1
+?? tools/eco-step-54b-day-close-debug-v0_1.ps1
+?? tools/eco-step-55-day-close-ui-v0_1.ps1
+?? tools/eco-step-56-day-close-card-v0_1.ps1
+?? tools/eco-step-56c-fix-card-og-display-v0_1.ps1
+?? tools/eco-step-57-month-close-transparencia-v0_1.ps1
+?? tools/eco-step-58-share-pack-v0_1.ps1
+?? tools/eco-step-58b-fix-hydration-share-links-v0_1.ps1
+?? tools/eco-step-59-month-close-mvp-v0_1.ps1
+?? tools/eco-step-60-fix-share-month-params-unwrap-v0_1.ps1
+?? tools/eco-step-61-critical-points-mvp-v0_1.ps1
+?? tools/eco-step-61-critical-points-mvp-v0_2.ps1
+?? tools/eco-step-62-mutirao-from-point-mvp-v0_1.ps1
+?? tools/eco-step-63-mutirao-finish-share-card-v0_1.ps1
+?? tools/eco-step-64-mutirao-upload-before-after-v0_1.ps1
+?? tools/eco-step-64-mutirao-upload-before-after-v0_2.ps1
+?? tools/eco-step-65-recibos-hub-v0_1.ps1
+?? tools/eco-step-66-finish-mutirao-resolve-point-proof-v0_1.ps1
+?? tools/eco-step-66b-patch-mutirao-client-proofnote-v0_1.ps1
+?? tools/eco-step-66c-patch-mutirao-client-proofnote-literalpath-v0_1.ps1
+?? tools/eco-step-67-point-resolution-reopen-v0_1.ps1
+?? tools/eco-step-68-lock-resolve-via-mutirao-and-30d-stats-v0_1.ps1
+?? tools/eco-step-69-mapa-abandono-x-cuidado-v0_1.ps1
+?? tools/eco-step-69b-mapa-abandono-x-cuidado-fix-quotes-v0_1.ps1
+?? tools/eco-step-70-point-detail-resolve-v0_1.ps1
+?? tools/eco-step-71-mutirao-finish-resolve-point-v0_1.ps1
+?? tools/eco-step-72-mutirao-finish-upload-before-after-v0_1.ps1
+?? tools/eco-step-72c-fix-finalizar-page-params-await-v0_1.ps1
+?? tools/eco-step-72d-rewrite-finalizar-page-params-await-v0_1.ps1
+?? tools/eco-step-73-mutirao-share-card-v0_1.ps1
+?? tools/eco-step-74-mutirao-card-before-after-v0_2.ps1
+?? tools/eco-step-75-add-share-buttons-mutirao-pages-v0_1.ps1
+?? tools/eco-step-76-mutirao-proof-in-finalize-v0_1.ps1
+?? tools/eco-step-77-point-proof-badge-v0_1.ps1
+?? tools/eco-step-78-points-list-map-status-markers-v0_1.ps1
+?? tools/eco-step-79-resolve-point-manual-v0_1.ps1
+?? tools/eco-step-80-share-point-card-v0_1.ps1
+?? tools/eco-step-81-mural-do-cuidado-pontos-v0_1.ps1
+?? tools/eco-step-82-share-point-card-v0_1.ps1
+?? tools/eco-step-83-point-reactions-actions-v0_1.ps1
+?? tools/eco-step-84-mural-acoes-view-v0_1.ps1
+?? tools/eco-step-85-mural-integrar-actionbar-v0_1.ps1
+?? tools/eco-step-85b-mural-integrar-actionbar-fix-addRange-v0_1.ps1
+?? tools/eco-step-86-confirmado-badge-ui-v0_1.ps1
+?? tools/eco-step-86b-confirmado-badge-ui-smart-v0_1.ps1
+?? tools/eco-step-87-mural-topo-fixo-v0_1.ps1
+?? tools/eco-step-87b-fix-mural-page-p-div-nesting-v0_1.ps1
+?? tools/eco-step-87c-rewrite-mural-page-safe-v0_1.ps1
+?? tools/eco-step-88-mural-topbar-client-v0_1.ps1
+?? tools/eco-step-89-mural-topbar-transparencia-v0_1.ps1
+?? tools/eco-step-90-mural-strong-light-actions-v0_1.ps1
+?? tools/eco-step-91-mural-chamados-topbar-wa-safe-v0_1.ps1
+?? tools/eco-step-91b-fix-mural-imports-default-v0_1.ps1
+?? tools/eco-step-92b-confirmado-badge-actionsinline-v0_1.ps1
+?? tools/eco-step-92c-mural-confirmado-badge-counts-v0_2.ps1
+?? tools/eco-step-93-mural-confirmados-view-v0_1.ps1
+?? tools/eco-step-94-mural-api-confirm-counts-v0_1.ps1
+?? tools/eco-step-95-fix-points-list2-unterminated-string-v0_1.ps1
+?? tools/eco-step-95-fix-points-list2-unterminated-string-v0_2.ps1
+?? tools/eco-step-95-fix-points-list2-unterminated-string-v0_3.ps1
+?? tools/eco-step-95-fix-points-list2-unterminated-string-v0_4.ps1
+?? tools/eco-step-96-points-alias-route-v0_1.ps1
+?? tools/eco-step-97-fix-points-list2-and-confirmados-v0_1.ps1
+?? tools/eco-step-98-confirm-badge-and-points-alias-v0_1.ps1
+?? tools/eco-step-99-point-support-action-v0_1.ps1
+?? tools/eco-step-99c-fix-support-relation-and-list2-strings-v0_1.ps1
+?? tools/eco-step-99c-fix-support-relation-and-list2-strings-v0_2.ps1
+?? tools/new-tijolo.ps1
+?? tools/seed-missoes-dev-v0_1.ps1
+
+---- git diff --stat ----
+warning: in the working copy of 'eslint.config.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'next-env.d.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'next.config.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/schema.prisma', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/pickup-requests/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/points/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/receipts/[code]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/receipts/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/requests/[id]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/chamar-coleta/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/chamar/sucesso/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/pedidos/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/recibo/[code]/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/recibos/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/share-bar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tools/eco-doctor.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tools/eco-smoke.ps1', LF will be replaced by CRLF the next time Git touches it
+ eslint.config.mjs                         |  83 ++-
+ next-env.d.ts                             |   2 +-
+ next.config.js                            |   2 +
+ package-lock.json                         | 894 +++++++++++++++++++++++++++---
+ package.json                              |  22 +-
+ prisma/schema.prisma                      | 127 ++++-
+ src/app/api/pickup-requests/[id]/route.ts | 120 ++--
+ src/app/api/pickup-requests/route.ts      | 224 ++++++--
+ src/app/api/points/route.ts               | 281 +++++++++-
+ src/app/api/receipts/[code]/route.ts      | 142 ++++-
+ src/app/api/receipts/route.ts             | 327 ++++++++++-
+ src/app/api/requests/[id]/route.ts        |  56 +-
+ src/app/chamar-coleta/page.tsx            |  21 +-
+ src/app/chamar/sucesso/page.tsx           |  40 +-
+ src/app/coleta/p/[id]/point-detail.tsx    |   3 +-
+ src/app/pedidos/page.tsx                  | 197 ++++---
+ src/app/recibo/[code]/page.tsx            |  90 +--
+ src/app/recibos/page.tsx                  | 126 +++--
+ src/components/share-bar.tsx              |   4 +-
+ tools/eco-doctor.ps1                      |  71 +--
+ tools/eco-smoke.ps1                       |   2 +
+ tsconfig.json                             |  27 +-
+ 22 files changed, 2200 insertions(+), 661 deletions(-)
+
+---- git add -A ----
+OK
+
+---- git commit ----
+[main 2df4f56] ECO: build ok + lint 0 warnings (pickup id + catch vars)
+ 882 files changed, 125651 insertions(+), 661 deletions(-)
+ create mode 100644 .eslintignore.bak-20260116-221117
+ create mode 100644 eco-step-134c-inline-mapa-no-mural-safe-v0_3
+ create mode 100644 prisma/migrations/20251227140551/migration.sql
+ create mode 100644 prisma/migrations/20251227195531_eco_month_close/migration.sql
+ create mode 100644 prisma/migrations/20251227200753_eco_critical_points/migration.sql
+ create mode 100644 prisma/migrations/20251227201603_eco_mutirao_from_point/migration.sql
+ create mode 100644 prisma/migrations/20251228234212_eco_point_support_rel/migration.sql
+ create mode 100644 prisma/migrations/20251229014323_eco_point_replicate/migration.sql
+ create mode 100644 prisma/migrations/migration_lock.toml
+ create mode 100644 reports/20251222-205917-eco-step-05-emitir-recibo-por-pedido.md
+ create mode 100644 reports/20251222-211426-eco-hotfix-receipts-compile-error.md
+ create mode 100644 reports/20251222-215238-eco-step-07a2-fix-step07-parser.md
+ create mode 100644 reports/20251222-220912-eco-step-07b2-rebuild-pedidos-fechar-ui.md
+ create mode 100644 reports/20251222-221417-eco-step-07c-backcompat-api-requests.md
+ create mode 100644 reports/20251222-221952-eco-step-07d-hotfix-pickup-requests-address.md
+ create mode 100644 reports/20251222-222921-eco-step-07e2-add-fechar-on-sucesso.md
+ create mode 100644 reports/20251223-121701-eco-step-08b-fix-api-requests-alias-to-pickup.md
+ create mode 100644 reports/20251223-124723-eco-step-09-recibo-public-page.md
+ create mode 100644 reports/20251223-125105-eco-step-10-recibo-public-toggle-qrcode.md
+ create mode 100644 reports/20251223-133206-eco-step-10c-prisma-add-receipt-public-robust.md
+ create mode 100644 reports/20251223-135934-eco-step-10d-prisma-cli-migrate-without-npx.md
+ create mode 100644 reports/20251223-141949-eco-step-10e2-recibo-toggle-public-ui-and-api-safe.md
+ create mode 100644 reports/20251223-143707-eco-step-10f-fix-db-drift-pickup-status.md
+ create mode 100644 reports/20251223-144254-eco-step-10g-fix-db-pickup-status-column.md
+ create mode 100644 reports/20251223-145021-eco-step-10h2-ensure-prisma-cli-and-push-safe.md
+ create mode 100644 reports/20251223-145537-eco-step-11-pedidos-actions-fechar-e-ver-recibo.md
+ create mode 100644 reports/20251223-150326-eco-step-12-fix-api-points-slug-required.md
+ create mode 100644 reports/20251223-151217-eco-step-12c-fix-api-points-required-city.md
+ create mode 100644 reports/20251223-152637-eco-step-13c-optional-operator-token-safe.md
+ create mode 100644 reports/20251223-154621-eco-step-14b-fix-api-points-city-required-robust.md
+ create mode 100644 reports/20251223-155729-eco-step-15-harden-api-points-required-defaults.md
+ create mode 100644 reports/20251223-164944-eco-step-16b-harden-receipts-get-public-only-robust.md
+ create mode 100644 reports/20251223-165842-eco-step-16c-fix-receipts-guard-syntax.md
+ create mode 100644 reports/20251223-170941-eco-step-16d-fix-api-points-route-rewrite-safe.md
+ create mode 100644 reports/20251223-171340-eco-step-17-recibo-client-get-with-optional-token.md
+ create mode 100644 reports/20251223-184611-eco-step-18h-attach-receipt-in-pickup-list-wrap-findmany.md
+ create mode 100644 reports/20251223-190751-eco-step-18h2-fix-findmany-type-and-wrap-runtime.md
+ create mode 100644 reports/20251224-144704-eco-step-19-pedidos-show-ver-recibo-link.md
+ create mode 100644 reports/20251224-151424-eco-step-20lite-fix-pickup-requests-type-parse.md
+ create mode 100644 reports/20251224-162824-eco-step-21c2-fix-ui-pedidos-token-inject-safe.md
+ create mode 100644 reports/20251224-163550-eco-step-21c3-dedupe-ecoWithReceipt-in-pickup-requests.md
+ create mode 100644 reports/20251224-171137-eco-step-21d-recover-route-and-receiptlink-client-token.md
+ create mode 100644 reports/20251224-171909-eco-step-21e-fix-pickup-requests-dedupe-reinject.md
+ create mode 100644 reports/20251224-173352-eco-step-22-pickup-requests-receipt-privacy.md
+ create mode 100644 reports/20251224-175503-eco-step-22-pickup-requests-receipt-privacy.md
+ create mode 100644 reports/20251224-175905-eco-step-22b-fix-pickup-requests-privacy-dedupe.md
+ create mode 100644 reports/20251224-180441-eco-step-22c-fix-pickup-requests-privacy-redeclare-var.md
+ create mode 100644 reports/20251224-181145-eco-step-22d-normalize-pickup-requests-dedupe-helpers.md
+ create mode 100644 reports/20251224-182049-eco-step-23-fix-pickup-requests-dedupe-all-helpers.md
+ create mode 100644 reports/20251224-182848-eco-step-23a-operator-panel-and-receiptlink-fetch.md
+ create mode 100644 reports/20251224-183445-eco-step-23b-pedidos-add-operator-shortcut.md
+ create mode 100644 reports/20251224-184339-eco-step-23-issue-receipt-from-pedidos.md
+ create mode 100644 reports/20251224-190401-eco-step-23b-receipt-public-toggle-fix.md
+ create mode 100644 reports/20251224-191917-eco-step-24b-public-receipt-page-safe.md
+ create mode 100644 reports/20251224-193657-eco-step-25-receiptlink-public-aware-and-copylink.md
+ create mode 100644 reports/20251225-162322-eco-step-26-public-receipt-sharebar-copy-wa.md
+ create mode 100644 reports/20251225-163550-eco-step-27-receipt-card-share-endpoint-3x4.md
+ create mode 100644 reports/20251225-181429-eco-step-28c-receipt-share-webshare-and-1x1-safe2.md
+ create mode 100644 reports/20251225-182330-eco-step-29-public-receipt-og-metadata.md
+ create mode 100644 reports/20251225-183544-eco-step-28c-receipt-sharebar-webshare-safe.md
+ create mode 100644 reports/20251225-184636-eco-step-29-receipt-sharepack-text-and-preview.md
+ create mode 100644 reports/20251225-192412-eco-step-28c-receipt-sharebar-webshare-1x1-hardening.md
+ create mode 100644 reports/20251225-193906-eco-step-29-receipt-share-link-copy-whatsapp.md
+ create mode 100644 reports/20251225-202954-eco-step-30-receipt-sharepack-captions.md
+ create mode 100644 reports/20251225-203504-eco-step-31-receipt-sharepack-toast.md
+ create mode 100644 reports/20251225-210035-eco-step-32-receipt-share-url-fallback.md
+ create mode 100644 reports/20251225-212612-eco-step-33-receipt-share-pack-zip.md
+ create mode 100644 reports/20251225-214204-eco-step-28c-receipt-share-webshare-and-1x1-safe-markers.md
+ create mode 100644 reports/20251225-215259-eco-step-29-operator-panel-mvp.md
+ create mode 100644 reports/20251225-221040-eco-step-30-operator-panel-filters-route-export.md
+ create mode 100644 reports/20251225-222113-eco-step-31-operator-triage-kanban.md
+ create mode 100644 reports/20251225-230136-eco-step-32b-operator-triage-route-of-day-safe.md
+ create mode 100644 reports/20251225-230739-eco-step-32c-fix-eco-smoke-triagem.md
+ create mode 100644 reports/20251225-232105-eco-step-33b-pickup-status-and-bulk-safe.md
+ create mode 100644 reports/20251226-134518-eco-step-34-operator-triage-bulk-ui.md
+ create mode 100644 reports/20251226-140346-eco-step-35-operator-triage-day-close-summary.md
+ create mode 100644 reports/20251226-142221-eco-step-36c-operator-day-card-3x4-safe.md
+ create mode 100644 reports/20251226-143812-eco-step-36d-route-day-card-nojsx.md
+ create mode 100644 reports/20251226-144225-eco-step-36e-route-day-card-og-flexfix.md
+ create mode 100644 reports/20251226-145427-eco-step-36f-day-card-1x1-buttons-and-webshare.md
+ create mode 100644 reports/20251226-153726-eco-step-37b-public-day-share-page-safe.md
+ create mode 100644 reports/20251226-154318-eco-step-37c-fix-async-params-headers.md
+ create mode 100644 reports/20251226-162119-eco-step-38c-wire-day-share-link-and-smoke-safe.md
+ create mode 100644 reports/20251226-174239-eco-step-39-share-day-caption-and-smoke.md
+ create mode 100644 reports/20251226-181942-eco-step-40-fix-triage-day-share-block.md
+ create mode 100644 reports/20251226-193232-eco-step-43-share-day-hardening.md
+ create mode 100644 reports/20251226-193705-eco-step-43b-share-day-hardening.md
+ create mode 100644 reports/20251226-201118-eco-step-44-day-close-store-safe.md
+ create mode 100644 reports/20251226-201850-eco-step-45-triagem-shortcut-s-dia.md
+ create mode 100644 reports/20251226-203816-eco-step-46-fix-day-close-autofill.md
+ create mode 100644 reports/20251226-235054-eco-step-48-hotfix-safe-day-card-and-day-close-guard.md
+ create mode 100644 reports/20251227-100854-eco-step-48-fix-route-day-card-display-flex.md
+ create mode 100644 reports/20251227-103704-eco-step-49-bootstrap-tijolos.md
+ create mode 100644 reports/20251227-104358-eco-step-50-prisma-eco-day-close.md
+ create mode 100644 reports/20251227-104954-eco-step-50b-fix-prisma-exec-and-run-migrate.md
+ create mode 100644 reports/20251227-110034-eco-step-50c-prisma-drift-reset-sqlite.md
+ create mode 100644 reports/20251227-111538-eco-step-51-doctor-and-new-tijolo.md
+ create mode 100644 reports/20251227-122933-eco-step-51-prisma-eco-day-close-model-migrate.md
+ create mode 100644 reports/20251227-125553-eco-step-52-day-close-migrate-and-api-upsert.md
+ create mode 100644 reports/20251227-132259-eco-step-53b-fix-day-close-accept-day-d-date.md
+ create mode 100644 reports/20251227-143805-eco-step-54-fix-day-close-safeDay-regex.md
+ create mode 100644 reports/20251227-143914-eco-step-54-fix-day-close-safeDay-regex.md
+ create mode 100644 reports/20260115-195256-cv-b8p3-portals-meta-corenodes.md
+ create mode 100644 reports/20260115-235835-cv-rescue-b8p7.md
+ create mode 100644 reports/ECO-STEP-149-eslint9-lint-hotfix-20260116-221117.md
+ create mode 100644 reports/bootstrap-smoke-20260114-224132.md
+ create mode 100644 reports/eco-diag-repo-scan-v0_4-20260115-231309.md
+ create mode 100644 reports/eco-fix-day-close-parse-v0_1-20251227-144605.md
+ create mode 100644 reports/eco-runner-20260117-163409.md
+ create mode 100644 reports/eco-runner-20260117-163531.md
+ create mode 100644 reports/eco-runner-20260117-165203.md
+ create mode 100644 reports/eco-runner-20260117-170944.md
+ create mode 100644 reports/eco-runner-20260117-174911.md
+ create mode 100644 reports/eco-runner-20260117-174912.md
+ create mode 100644 reports/eco-runner-20260117-180109.md
+ create mode 100644 reports/eco-runner-20260117-180958.md
+ create mode 100644 reports/eco-runner-20260117-180959.md
+ create mode 100644 reports/eco-runner-20260117-181001.md
+ create mode 100644 reports/eco-runner-20260117-184302.md
+ create mode 100644 reports/eco-runner-20260117-184311.md
+ create mode 100644 reports/eco-runner-20260117-184324.md
+ create mode 100644 reports/eco-runner-20260117-184328.md
+ create mode 100644 reports/eco-runner-20260117-191232.md
+ create mode 100644 reports/eco-runner-20260117-191526.md
+ create mode 100644 reports/eco-runner-20260117-191529.md
+ create mode 100644 reports/eco-runner-20260117-201314.md
+ create mode 100644 reports/eco-runner-20260117-202534.md
+ create mode 100644 reports/eco-runner-20260117-202539.md
+ create mode 100644 reports/eco-runner-20260117-203126.md
+ create mode 100644 reports/eco-runner-20260117-204457.md
+ create mode 100644 reports/eco-runner-20260117-204501.md
+ create mode 100644 reports/eco-step-100d-rewrite-points-list2-route-v0_1-20251229-131753.md
+ create mode 100644 reports/eco-step-100e-fix-bare-field-identifiers-v0_1-20251229-132212.md
+ create mode 100644 reports/eco-step-101-fix-pointid-crash-supportbutton-v0_1-20251229-134125.md
+ create mode 100644 reports/eco-step-102-fix-pointid-bareidentifiers-v0_1-20251229-135552.md
+ create mode 100644 reports/eco-step-103-fix-pointactionsinline-pointid-scope-v0_1-20251229-140405.md
+ create mode 100644 reports/eco-step-104-stabilize-points-api-list2-counts-support-prisma-v0_1-20251229-142351.md
+ create mode 100644 reports/eco-step-105-list2-autodetect-pointmodel-nonempty-v0_1-20251229-144506.md
+ create mode 100644 reports/eco-step-106-seed-eco-pontos-dev-v0_1-20251229-152123.md
+ create mode 100644 reports/eco-step-106b-fix-seed-eco-route-robusto-v0_1-20251229-163904.md
+ create mode 100644 reports/eco-step-106c-fix-seed-eco-pragma-string-v0_2-20251229-172255.md
+ create mode 100644 reports/eco-step-106d-rewrite-seed-eco-kind-required-v0_3-20251229-190252.md
+ create mode 100644 reports/eco-step-106e-rewrite-seed-eco-route-stable-v0_1-20251229-191518.md
+ create mode 100644 reports/eco-step-106f2-fix-seed-eco-dmmf-required-v0_2-20251230-125954.md
+ create mode 100644 reports/eco-step-107g-fix-points-list-alias-and-front-safe-v0_1-20251230-163513.md
+ create mode 100644 reports/eco-step-108-add-mural-actions-endpoints-v0_1-20251230-193428.md
+ create mode 100644 reports/eco-step-108-add-mural-actions-endpoints-v0_1-20251230-233241.md
+ create mode 100644 reports/eco-step-108-add-mural-actions-endpoints-v0_1-20260102-130401.md
+ create mode 100644 reports/eco-step-108-add-mural-actions-endpoints-v0_1-20260102-164956.md
+ create mode 100644 reports/eco-step-109-wire-mural-actions-ui-v0_1-20260102-165017.md
+ create mode 100644 reports/eco-step-110-fix-mural-nested-links-and-points2-v0_1-20260102-183430.md
+ create mode 100644 reports/eco-step-111-fix-mural-nav-and-points2-alias-v0_1-20260102-205847.md
+ create mode 100644 reports/eco-step-112-add-create-point-and-ui-v0_3-20260103-182504.md
+ create mode 100644 reports/eco-step-113h-add-point-actions-optimistic-safe-v0_1-20260103-184128.md
+ create mode 100644 reports/eco-step-114-fix-mural-links-inject-actions-v0_1-20260114-101828.md
+ create mode 100644 reports/eco-step-115h-rewrite-points-action-dmmf-safe-v0_1-20260114-103305.md
+ create mode 100644 reports/eco-step-116-add-points2-alias-and-scan-v0_1-20260114-104304.md
+ create mode 100644 reports/eco-step-117-fix-mural-links-and-actions-v0_1-20260114-105608.md
+ create mode 100644 reports/eco-step-118c-fix-muralclient-p-undefined-v0_1-20260114-112039.md
+ create mode 100644 reports/eco-step-119-fix-muralclient-sort-and-base-filters-safe-v0_2-20260114-115613.md
+ create mode 100644 reports/eco-step-119-fix-muralclient-sort-syntax-v0_1-20260114-113826.md
+ create mode 100644 reports/eco-step-120j-upgrade-newpoint-geolocate-safe-v0_3-20260114-122124.md
+ create mode 100644 reports/eco-step-121-mural-readable-mode-v0_1-20260114-122752.md
+ create mode 100644 reports/eco-step-121b-fix-mural-readable-styles-v0_1-20260114-123530.md
+ create mode 100644 reports/eco-step-121c-fix-mural-readable-styles-template-v0_1-20260114-123959.md
+ create mode 100644 reports/eco-step-121g-fix-bootstrap-and-readable-mural-v0_3-20260114-132402.md
+ create mode 100644 reports/eco-step-122-add-eco-mapa-mvp-v0_1-20260114-143100.md
+ create mode 100644 reports/eco-step-123-add-mapa-links-in-mural-v0_1-20260114-144006.md
+ create mode 100644 reports/eco-step-124d-finish-pvar-scan-using-literalpath-v0_1-20260114-151735.md
+ create mode 100644 reports/eco-step-125-fix-it-undefined-mural-v0_1-20260114-152636.md
+ create mode 100644 reports/eco-step-127-fix-p-undefined-openstreetmap-and-sort-auto-v0_1-20260114-173544.md
+ create mode 100644 reports/eco-step-128-fix-mural-referror-guards-v0_1-20260114-190724.md
+ create mode 100644 reports/eco-step-128-fix-mural-referror-guards-v0_1-20260114-191026.md
+ create mode 100644 reports/eco-step-129-remove-osm-inline-links-v0_1-20260114-192003.md
+ create mode 100644 reports/eco-step-130-add-mapa-link-in-actions-safe-v0_1-20260114-192749.md
+ create mode 100644 reports/eco-step-131-mural-readable-contrast-v0_1-20260114-193230.md
+ create mode 100644 reports/eco-step-132-mural-wide-and-autogrid-v0_1-20260114-205239.md
+ create mode 100644 reports/eco-step-133c-mapa-panel-iframe-actions-and-wide-safe-v0_3-20260114-215330.md
+ create mode 100644 reports/eco-step-134e-rewrite-bootstrap-safe-v0_1-20260114-224132.md
+ create mode 100644 reports/eco-step-135-inline-mapa-embed-osm-v0_1-20260114-231755.md
+ create mode 100644 reports/eco-step-136b-wide-shell-mural-mapa-safe-v0_1-20260115-110754.md
+ create mode 100644 reports/eco-step-138b-mural-wide-and-inline-mapa-style-safe-20260115-122426.md
+ create mode 100644 reports/eco-step-139-mural-wide-max-and-map-sticky-safe-v0_1-20260115-125857.md
+ create mode 100644 reports/eco-step-140-mural-splitview-map-sticky-v0_1-20260115-141852.md
+ create mode 100644 reports/eco-step-140b-fix-page-searchparams-mapopen-v0_1-20260115-143457.md
+ create mode 100644 reports/eco-step-140b-inline-fix-20260115-153318.md
+ create mode 100644 reports/eco-step-140c-fix-mural-page-mapopen-and-split-clean-v0_1-20260115-155201.md
+ create mode 100644 reports/eco-step-140d-rewrite-mural-page-canonical-v0_1-20260115-160053.md
+ create mode 100644 reports/eco-step-141-mural-split-wrapper-safe-v0_1-20260115-162852.md
+ create mode 100644 reports/eco-step-142b-fix-mural-map-split-and-dev-webpack-safe-v0_2-20260115-165152.md
+ create mode 100644 reports/eco-step-143-disable-turbopack-fix-invalid-sourcemap-v0_1-20260115-170200.md
+ create mode 100644 reports/eco-step-144-fix-mural-searchparams-promise-v0_1-20260115-171513.md
+ create mode 100644 reports/eco-step-144e-fix-mural-searchparams-promise-v0_1-20260115-174932.md
+ create mode 100644 reports/eco-step-145-fix-dev-and-mural-searchparams-v0_1-20260115-180747.md
+ create mode 100644 reports/eco-step-146-estado-geral-roadmap-diag-v0_1-20260115-224034.md
+ create mode 100644 reports/eco-step-146-mural-map-toggle-and-fix-dev-script-v0_1-20260115-221135.md
+ create mode 100644 reports/eco-step-146b-dev-scripts-and-allowedDevOrigins-v0_1-20260115-195345.md
+ create mode 100644 reports/eco-step-147-contract-snapshot-20260115-234256.md
+ create mode 100644 reports/eco-step-147-contract-snapshot-20260115-234355.md
+ create mode 100644 reports/eco-step-148-hardening-alias-contract-20260116-000117.md
+ create mode 100644 reports/eco-step-148b-verify-smoke-autodev-20260116-000329.md
+ create mode 100644 reports/eco-step-148b-verify-smoke-autodev-20260116-212318.md
+ create mode 100644 reports/eco-step-148b-verify-smoke-autodev-20260116-212512.md
+ create mode 100644 reports/eco-step-148b-verify-smoke-autodev-20260116-213600.md
+ create mode 100644 reports/eco-step-148b-verify-smoke-autodev-20260116-221911.md
+ create mode 100644 reports/eco-step-148b-verify-smoke-autodev-20260116-222900.md
+ create mode 100644 reports/eco-step-149-fix-compile-blockers-20260116-121458.md
+ create mode 100644 reports/eco-step-149-fix-compile-blockers-20260116-123907.md
+ create mode 100644 reports/eco-step-150-fix-build-blockers-20260116-132045.md
+ create mode 100644 reports/eco-step-151-fix-turbopack-7errors-20260116-132547.md
+ create mode 100644 reports/eco-step-152-fix-3parsing-errors-20260116-132855.md
+ create mode 100644 reports/eco-step-153-fix-remaining-parsing-errors-20260116-134739.md
+ create mode 100644 reports/eco-step-154-fix-recibo-patch-string-20260116-135036.md
+ create mode 100644 reports/eco-step-155-fix-routehandler-params-promise-20260116-135431.md
+ create mode 100644 reports/eco-step-156-fix-pickuprequests-id-route-params-promise-20260116-135844.md
+ create mode 100644 reports/eco-step-157-fix-receipts-public-route-params-promise-20260116-141059.md
+ create mode 100644 reports/eco-step-158-fix-receipts-public-code-dup-20260116-141409.md
+ create mode 100644 reports/eco-step-159-fix-actor-cookieheader-20260116-143122.md
+ create mode 100644 reports/eco-step-160-fix-stray-action-token-20260116-143444.md
+ create mode 100644 reports/eco-step-161-fix-nextresponse-import-20260116-143913.md
+ create mode 100644 reports/eco-step-162-fix-prisma-import-20260116-145755.md
+ create mode 100644 reports/eco-step-163-fix-pickuprequest-receipt-ctx-20260116-150932.md
+ create mode 100644 reports/eco-step-164-fix-pickuprequest-receipt-link-20260116-152726.md
+ create mode 100644 reports/eco-step-165-fix-pickuprequest-receipt-nested-create-20260116-153910.md
+ create mode 100644 reports/eco-step-166-fix-pickuprequests-id-route-ctx-20260116-154234.md
+ create mode 100644 reports/eco-step-167-fix-pickuprequests-id-route-ctx-force-20260116-154539.md
+ create mode 100644 reports/eco-step-168-fix-pickuprequests-route-reqname-20260116-155402.md
+ create mode 100644 reports/eco-step-171-fix-pickuprequests-ecoIsOperator-param-20260116-160410.md
+ create mode 100644 reports/eco-step-172-fix-pickuprequests-privacy-block-placement-20260116-175739.md
+ create mode 100644 reports/eco-step-173-fix-pickuprequests-privacy-block-into-get-20260116-180418.md
+ create mode 100644 reports/eco-step-174-fix-pickuprequests-get-param-20260116-181718.md
+ create mode 100644 reports/eco-step-175-move-pickuprequests-privacy-block-after-items-20260116-182343.md
+ create mode 100644 reports/eco-step-176-fix-pickuprequests-triage-sharecode-20260116-184013.md
+ create mode 100644 reports/eco-step-177-fix-api-points-fieldnames-never-20260116-184304.md
+ create mode 100644 reports/eco-step-178-fix-api-points-fieldnames-includes-global-20260116-184845.md
+ create mode 100644 reports/eco-step-179-fix-api-receipts-fieldnames-includes-20260116-185346.md
+ create mode 100644 reports/eco-step-180-fix-api-receipts-root-fieldnames-includes-20260116-185721.md
+ create mode 100644 reports/eco-step-181-fix-api-any-fieldnames-includes-global-20260116-190652.md
+ create mode 100644 reports/eco-step-182-fix-receipts-pickupdoneupdate-cast-20260116-191307.md
+ create mode 100644 reports/eco-step-183-fix-receipt-pack-nextresponse-buffer-20260116-191518.md
+ create mode 100644 reports/eco-step-184-fix-chamarcoleta-headers-20260116-192117.md
+ create mode 100644 reports/eco-step-185-fix-muralacoesclient-num-20260116-192534.md
+ create mode 100644 reports/eco-step-186-fix-muralpointactions-localcounts-20260116-193037.md
+ create mode 100644 reports/eco-step-187b-fix-eco-pontos-id-sharelink-20260116-194543.md
+ create mode 100644 reports/eco-step-188-fix-r-code-headers-await-20260116-200146.md
+ create mode 100644 reports/eco-step-189-fix-operatortriageboard-stray-call-20260116-202016.md
+ create mode 100644 reports/eco-step-190-fix-build-blockers-3x-20260116-204757.md
+ create mode 100644 reports/eco-step-191-fix-receiptpublishbutton-token-header-20260116-205358.md
+ create mode 100644 reports/eco-step-192-fix-receiptsharebar-downloadcard-20260116-205722.md
+ create mode 100644 reports/eco-step-193-fix-receiptsharebar-sharecard-20260116-210111.md
+ create mode 100644 reports/eco-step-194-fix-receiptsharebar-sharecard-20260116-211202.md
+ create mode 100644 reports/eco-step-195-exclude-backups-from-ts-20260116-211725.md
+ create mode 100644 reports/eco-step-196-fix-lint-blockers-148b-20260116-213328.md
+ create mode 100644 reports/eco-step-196b-eslint9-ignores-anypolicy-20260116-224346.md
+ create mode 100644 reports/eco-step-197-unblock-eslint-20260116-230228.md
+ create mode 100644 reports/eco-step-197b-eslint9-flatconfig-20260116-230903.md
+ create mode 100644 reports/eco-step-198e-unblock-eslint9-and-build-20260116-233645.md
+ create mode 100644 reports/eco-step-199-eslint9-minsafe-and-dep-clean-20260116-235619.md
+ create mode 100644 reports/eco-step-200-stabilize-eslint9-and-verify-20260117-112959.md
+ create mode 100644 reports/eco-step-201r-stabilize-eslint9-real-lint-20260117-115018.md
+ create mode 100644 reports/eco-step-202-eslint9-real-lint-minsafe-20260117-120345.md
+ create mode 100644 reports/eco-step-203-eslint9-finalize-real-lint-20260117-125707.md
+ create mode 100644 reports/eco-step-205b-fix-scripts-colon-20260117-155833.md
+ create mode 100644 reports/eco-step-206b-dump-lint-output-20260117-161356.md
+ create mode 100644 reports/eco-step-207b-fix-runner-argv-20260117-163408.md
+ create mode 100644 reports/eco-step-208-runner-stable-20260117-170105.md
+ create mode 100644 reports/eco-step-210-fix-eco-runner-tasks-argv-20260117-171949.md
+ create mode 100644 reports/eco-step-213-rewrite-eco-runner-20260117-184301.md
+ create mode 100644 reports/eco-step-214c3-unusedvars-20260117-191525.md
+ create mode 100644 reports/eco-step-214e-unusedvars-20260117-201313.md
+ create mode 100644 reports/eco-step-214f-repair-parsing-20260117-202534.md
+ create mode 100644 reports/eco-step-215a-unusedvars-remaining-20260117-203125.md
+ create mode 100644 reports/eco-step-215b-zero-warnings-20260117-204457.md
+ create mode 100644 reports/eco-step-215c2-fix-unusedvars-20260117-205003.md
+ create mode 100644 reports/eco-step-215d-zero-warnings-20260117-205432.md
+ create mode 100644 reports/eco-step-216-verify-build-20260117-211925.md
+ create mode 100644 reports/eco-step-216b2-fix-build-catch-e-20260118-122757.md
+ create mode 100644 reports/eco-step-216b3-fix-build-catch-e-20260118-133946.md
+ create mode 100644 reports/eco-step-216c-fix-pickup-id-20260118-134349.md
+ create mode 100644 reports/eco-step-216d-zero-warnings-final-20260118-134946.md
+ create mode 100644 reports/eco-step-216e-fix-catch-param-usage-20260118-140644.md
+ create mode 100644 reports/eco-step-216f-zero-warnings-20260118-141032.md
+ create mode 100644 reports/eco-step-54b-day-close-debug-v0_1-20251227-145118.md
+ create mode 100644 reports/eco-step-55-day-close-ui-v0_1-20251227-151933.md
+ create mode 100644 reports/eco-step-56-day-close-card-v0_1-20251227-153452.md
+ create mode 100644 reports/eco-step-56c-fix-card-og-display-v0_1-20251227-154625.md
+ create mode 100644 reports/eco-step-57-month-close-transparencia-v0_1-20251227-155200.md
+ create mode 100644 reports/eco-step-58-share-pack-v0_1-20251227-163714.md
+ create mode 100644 reports/eco-step-58b-fix-hydration-share-links-v0_1-20251227-164752.md
+ create mode 100644 reports/eco-step-59-month-close-mvp-v0_1-20251227-165528.md
+ create mode 100644 reports/eco-step-60-fix-share-month-params-unwrap-v0_1-20251227-165855.md
+ create mode 100644 reports/eco-step-61-critical-points-mvp-v0_2-20251227-170751.md
+ create mode 100644 reports/eco-step-62-mutirao-from-point-mvp-v0_1-20251227-171601.md
+ create mode 100644 reports/eco-step-63-mutirao-finish-share-card-v0_1-20251227-172126.md
+ create mode 100644 reports/eco-step-64-mutirao-upload-before-after-v0_2-20251227-173500.md
+ create mode 100644 reports/eco-step-65-recibos-hub-v0_1-20251227-173950.md
+ create mode 100644 reports/eco-step-66c-patch-mutirao-client-proofnote-literalpath-v0_1-20251227-180833.md
+ create mode 100644 reports/eco-step-67-point-resolution-reopen-v0_1-20251227-182618.md
+ create mode 100644 reports/eco-step-68-lock-resolve-via-mutirao-and-30d-stats-v0_1-20251227-195656.md
+ create mode 100644 reports/eco-step-69b-mapa-fix-quotes-v0_1-20251227-200525.md
+ create mode 100644 reports/eco-step-70-point-detail-resolve-v0_1-20251227-201110.md
+ create mode 100644 reports/eco-step-71-mutirao-finish-resolve-point-v0_1-20251227-201712.md
+ create mode 100644 reports/eco-step-72-mutirao-finish-upload-before-after-v0_1-20251227-202115.md
+ create mode 100644 reports/eco-step-72d-rewrite-finalizar-page-params-await-v0_1-20251227-203212.md
+ create mode 100644 reports/eco-step-73-mutirao-share-card-v0_1-20251227-203512.md
+ create mode 100644 reports/eco-step-74-mutirao-card-before-after-v0_2-20251227-210250.md
+ create mode 100644 reports/eco-step-75-add-share-buttons-mutirao-pages-v0_1-20251227-210617.md
+ create mode 100644 reports/eco-step-76-mutirao-proof-in-finalize-v0_1-20251227-211224.md
+ create mode 100644 reports/eco-step-77-point-proof-badge-v0_1-20251227-211737.md
+ create mode 100644 reports/eco-step-78-points-list-map-status-markers-v0_1-20251228-133912.md
+ create mode 100644 reports/eco-step-79-resolve-point-manual-v0_1-20251228-134339.md
+ create mode 100644 reports/eco-step-80-share-point-card-v0_1-20251228-135921.md
+ create mode 100644 reports/eco-step-81-mural-do-cuidado-pontos-v0_1-20251228-153144.md
+ create mode 100644 reports/eco-step-82-share-point-card-v0_1-20251228-153824.md
+ create mode 100644 reports/eco-step-83-point-reactions-actions-v0_1-20251228-154825.md
+ create mode 100644 reports/eco-step-84-mural-acoes-view-v0_1-20251228-155402.md
+ create mode 100644 reports/eco-step-85b-mural-integrar-actionbar-fix-addRange-v0_1-20251228-160547.md
+ create mode 100644 reports/eco-step-86b-confirmado-badge-ui-smart-v0_1-20251228-164150.md
+ create mode 100644 reports/eco-step-87-mural-topo-fixo-v0_1-20251228-171731.md
+ create mode 100644 reports/eco-step-87b-fix-mural-page-p-div-nesting-v0_1-20251228-172010.md
+ create mode 100644 reports/eco-step-87c-rewrite-mural-page-safe-v0_1-20251228-172318.md
+ create mode 100644 reports/eco-step-88-mural-topbar-client-v0_1-20251228-172644.md
+ create mode 100644 reports/eco-step-89-mural-topbar-transparencia-v0_1-20251228-173212.md
+ create mode 100644 reports/eco-step-90-mural-strong-light-actions-v0_1-20251228-181244.md
+ create mode 100644 reports/eco-step-91-mural-chamados-topbar-wa-safe-v0_1-20251228-181718.md
+ create mode 100644 reports/eco-step-91b-fix-mural-imports-default-v0_1-20251228-181954.md
+ create mode 100644 reports/eco-step-92b-confirmado-badge-actionsinline-v0_1-20251228-183154.md
+ create mode 100644 reports/eco-step-92c-mural-confirmado-badge-counts-v0_2-20251228-184247.md
+ create mode 100644 reports/eco-step-93-mural-confirmados-view-v0_1-20251228-184605.md
+ create mode 100644 reports/eco-step-94-mural-api-confirm-counts-v0_1-20251228-184924.md
+ create mode 100644 reports/eco-step-95-fix-points-list2-unterminated-string-v0_2-20251228-185931.md
+ create mode 100644 reports/eco-step-95-fix-points-list2-unterminated-string-v0_4-20251228-191938.md
+ create mode 100644 reports/eco-step-96-points-alias-route-v0_1-20251228-192425.md
+ create mode 100644 reports/eco-step-97-fix-points-list2-and-confirmados-v0_1-20251228-200527.md
+ create mode 100644 reports/eco-step-98-confirm-badge-and-points-alias-v0_1-20251228-201051.md
+ create mode 100644 reports/eco-step-99-point-support-action-v0_1-20251228-201947.md
+ create mode 100644 reports/eco-step-99c-fix-support-relation-and-list2-strings-v0_2-20251228-204208.md
+ create mode 100644 src/app/api/dev/seed-eco/route.ts
+ create mode 100644 src/app/api/eco/critical/confirm/route.ts
+ create mode 100644 src/app/api/eco/critical/create/route.ts
+ create mode 100644 src/app/api/eco/critical/list/route.ts
+ create mode 100644 src/app/api/eco/day-close/card/route.tsx
+ create mode 100644 src/app/api/eco/day-close/compute/route.ts
+ create mode 100644 src/app/api/eco/day-close/list/route.ts
+ create mode 100644 src/app/api/eco/day-close/route.ts
+ create mode 100644 src/app/api/eco/month-close/card/route.tsx
+ create mode 100644 src/app/api/eco/month-close/list/route.ts
+ create mode 100644 src/app/api/eco/month-close/route.ts
+ create mode 100644 src/app/api/eco/mural/list/route.ts
+ create mode 100644 src/app/api/eco/mutirao/card/route.tsx
+ create mode 100644 src/app/api/eco/mutirao/create/route.ts
+ create mode 100644 src/app/api/eco/mutirao/finish/route.ts
+ create mode 100644 src/app/api/eco/mutirao/get/route.ts
+ create mode 100644 src/app/api/eco/mutirao/list/route.ts
+ create mode 100644 src/app/api/eco/mutirao/proof/route.ts
+ create mode 100644 src/app/api/eco/mutirao/update/route.ts
+ create mode 100644 src/app/api/eco/point/detail/route.ts
+ create mode 100644 src/app/api/eco/point/reopen/route.ts
+ create mode 100644 src/app/api/eco/points/action/route.ts
+ create mode 100644 src/app/api/eco/points/card/route.tsx
+ create mode 100644 src/app/api/eco/points/confirm/route.ts
+ create mode 100644 src/app/api/eco/points/get/route.ts
+ create mode 100644 src/app/api/eco/points/list/route.ts
+ create mode 100644 src/app/api/eco/points/list2/route.ts
+ create mode 100644 src/app/api/eco/points/map/route.ts
+ create mode 100644 src/app/api/eco/points/react/route.ts
+ create mode 100644 src/app/api/eco/points/replicar/route.ts
+ create mode 100644 src/app/api/eco/points/report/route.ts
+ create mode 100644 src/app/api/eco/points/resolve/route.ts
+ create mode 100644 src/app/api/eco/points/route.ts
+ create mode 100644 src/app/api/eco/points/stats/route.ts
+ create mode 100644 src/app/api/eco/points/support/route.ts
+ create mode 100644 src/app/api/eco/points2/route.ts
+ create mode 100644 src/app/api/eco/recibo/list/route.ts
+ create mode 100644 src/app/api/eco/upload/route.ts
+ create mode 100644 src/app/api/pickup-requests/[id]/receipt/route.ts
+ create mode 100644 src/app/api/pickup-requests/bulk/route.ts
+ create mode 100644 src/app/api/pickup-requests/triage/route.ts
+ create mode 100644 src/app/api/receipts/[code]/public/route.ts
+ create mode 100644 src/app/api/receipts/public/route.ts
+ create mode 100644 src/app/api/requests/route.ts
+ create mode 100644 src/app/api/share/receipt-card/route.tsx
+ create mode 100644 src/app/api/share/receipt-pack/route.ts
+ create mode 100644 src/app/api/share/route-day-card/route.ts
+ create mode 100644 src/app/eco/_components/ConfirmadoBadge.tsx
+ create mode 100644 src/app/eco/_components/EcoPointResolutionPanel.tsx
+ create mode 100644 src/app/eco/_components/EcoPoints30dWidget.tsx
+ create mode 100644 src/app/eco/_components/EcoWideStyles.tsx
+ create mode 100644 src/app/eco/_components/PointActionBar.tsx
+ create mode 100644 src/app/eco/_components/PointActionsInline.tsx
+ create mode 100644 src/app/eco/_components/PointReplicarButton.tsx
+ create mode 100644 src/app/eco/_components/PointSupportButton.tsx
+ create mode 100644 src/app/eco/_ui/PointStatus.tsx
+ create mode 100644 src/app/eco/fechamento/FechamentoClient.tsx
+ create mode 100644 src/app/eco/fechamento/page.tsx
+ create mode 100644 src/app/eco/mapa/MapaClient.tsx
+ create mode 100644 src/app/eco/mapa/_components/MapaClient.tsx
+ create mode 100644 src/app/eco/mapa/page.tsx
+ create mode 100644 src/app/eco/mural-acoes/MuralAcoesClient.tsx
+ create mode 100644 src/app/eco/mural-acoes/_components/MuralTopBarClient.tsx
+ create mode 100644 src/app/eco/mural-acoes/page.tsx
+ create mode 100644 src/app/eco/mural/MuralClient.tsx
+ create mode 100644 src/app/eco/mural/_components/MapToggleLink.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralInlineMapa.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralNavPillsClient.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralNewPointClient.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralPointActionsClient.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralReadableStyles.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralTopBar.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralTopBarClient.tsx
+ create mode 100644 src/app/eco/mural/_components/MuralWideStyles.tsx
+ create mode 100644 src/app/eco/mural/chamados/page.tsx
+ create mode 100644 src/app/eco/mural/confirmados/page.tsx
+ create mode 100644 src/app/eco/mural/page.tsx
+ create mode 100644 src/app/eco/mutiroes/MutiroesClient.tsx
+ create mode 100644 src/app/eco/mutiroes/[id]/MutiraoDetailClient.tsx
+ create mode 100644 src/app/eco/mutiroes/[id]/finalizar/MutiraoFinishClient.tsx
+ create mode 100644 src/app/eco/mutiroes/[id]/finalizar/page.tsx
+ create mode 100644 src/app/eco/mutiroes/[id]/page.tsx
+ create mode 100644 src/app/eco/mutiroes/page.tsx
+ create mode 100644 src/app/eco/pontos/PontosClient.tsx
+ create mode 100644 src/app/eco/pontos/[id]/PointDetailClient.tsx
+ create mode 100644 src/app/eco/pontos/[id]/page.tsx
+ create mode 100644 src/app/eco/pontos/[id]/resolver/PointResolveClient.tsx
+ create mode 100644 src/app/eco/pontos/[id]/resolver/page.tsx
+ create mode 100644 src/app/eco/pontos/page.tsx
+ create mode 100644 src/app/eco/recibos/RecibosClient.tsx
+ create mode 100644 src/app/eco/recibos/page.tsx
+ create mode 100644 src/app/eco/share/dia/[day]/ShareDayClient.tsx
+ create mode 100644 src/app/eco/share/dia/[day]/page.tsx
+ create mode 100644 src/app/eco/share/mes/[month]/ShareMonthClient.tsx
+ create mode 100644 src/app/eco/share/mes/[month]/page.tsx
+ create mode 100644 src/app/eco/share/mutirao/[id]/ShareMutiraoClient.tsx
+ create mode 100644 src/app/eco/share/mutirao/[id]/page.tsx
+ create mode 100644 src/app/eco/share/page.tsx
+ create mode 100644 src/app/eco/share/ponto/[id]/SharePointClient.tsx
+ create mode 100644 src/app/eco/share/ponto/[id]/page.tsx
+ create mode 100644 src/app/eco/transparencia/TransparenciaClient.tsx
+ create mode 100644 src/app/eco/transparencia/page.tsx
+ create mode 100644 src/app/operador/page.tsx
+ create mode 100644 src/app/operador/triagem/DayCloseShortcut.tsx
+ create mode 100644 src/app/operador/triagem/OperatorTriageV2.tsx
+ create mode 100644 src/app/operador/triagem/page.legacy.tsx
+ create mode 100644 src/app/operador/triagem/page.tsx
+ create mode 100644 src/app/pedidos/fechar/[id]/fechar-client.tsx
+ create mode 100644 src/app/pedidos/fechar/[id]/page.tsx
+ create mode 100644 src/app/pedidos/fechar/page.tsx
+ create mode 100644 src/app/r/[code]/not-found.tsx
+ create mode 100644 src/app/r/[code]/page.tsx
+ create mode 100644 src/app/recibo/[code]/recibo-client.tsx
+ create mode 100644 src/app/s/dia/[day]/DayClosePanel.tsx
+ create mode 100644 src/app/s/dia/[day]/DayShareClient.tsx
+ create mode 100644 src/app/s/dia/[day]/page.tsx
+ create mode 100644 src/components/eco/IssueReceiptButton.tsx
+ create mode 100644 src/components/eco/OperatorPanel.tsx
+ create mode 100644 src/components/eco/OperatorTriageBoard.tsx
+ create mode 100644 src/components/eco/ReceiptLink.tsx
+ create mode 100644 src/components/eco/ReceiptPublishButton.tsx
+ create mode 100644 src/components/eco/ReceiptShareBar.tsx
+ create mode 100644 src/lib/eco/muralActions.ts
+ create mode 100644 src/lib/v2/loadCadernoMeta.ts
+ create mode 100644 tools/ECO-STEP-149-eslint9-lint-hotfix-v0_1.ps1
+ create mode 100644 tools/SEU-SCRIPT.ps1
+ create mode 100644 tools/TIJOLOS.md
+ create mode 100644 tools/_bootstrap.ps1
+ create mode 100644 tools/_eco-lib.ps1
+ create mode 100644 tools/_step-template.ps1
+ create mode 100644 tools/_tijolo-template.ps1
+ create mode 100644 tools/cv-b8p3-portals-meta-corenodes-v0_1.ps1
+ create mode 100644 tools/cv-rescue-b8hz-v2-lint-warnings-and-verify-v0_1.ps1
+ create mode 100644 tools/cv-rescue-b8p7-bootstrap-fix-v0_1.ps1
+ create mode 100644 tools/eco-diag-repo-scan-v0_1.ps1
+ create mode 100644 tools/eco-diag-repo-scan-v0_2.ps1
+ create mode 100644 tools/eco-diag-repo-scan-v0_3.ps1
+ create mode 100644 tools/eco-diag-repo-scan-v0_4.ps1
+ create mode 100644 tools/eco-fix-day-close-parse-v0_1.ps1
+ create mode 100644 tools/eco-hotfix-38f-run.ps1
+ create mode 100644 tools/eco-hotfix-38g-fix-triage-step38-block-and-route-day-card.ps1
+ create mode 100644 tools/eco-hotfix-receipts-compile-error.ps1
+ create mode 100644 tools/eco-runner.ps1
+ create mode 100644 tools/eco-smoke-share-day.ps1
+ create mode 100644 tools/eco-step-05-emitir-recibo-por-pedido.ps1
+ create mode 100644 tools/eco-step-07-pedidos-fechar-ui.ps1
+ create mode 100644 tools/eco-step-07a-hotfix-parser-backticks.ps1
+ create mode 100644 tools/eco-step-07a2-fix-step07-parser.ps1
+ create mode 100644 tools/eco-step-07b2-rebuild-pedidos-fechar-ui.ps1
+ create mode 100644 tools/eco-step-07c-backcompat-api-requests.ps1
+ create mode 100644 tools/eco-step-07d-hotfix-pickup-requests-address.ps1
+ create mode 100644 tools/eco-step-07e2-add-fechar-on-sucesso.ps1
+ create mode 100644 tools/eco-step-08b-fix-api-requests-alias-to-pickup.ps1
+ create mode 100644 tools/eco-step-09-recibo-public-page.ps1
+ create mode 100644 tools/eco-step-10-recibo-public-toggle-qrcode.ps1
+ create mode 100644 tools/eco-step-100-fix-list2-confirm-groupby-field-v0_1.ps1
+ create mode 100644 tools/eco-step-100-fix-list2-confirm-groupby-field-v0_2.ps1
+ create mode 100644 tools/eco-step-100-fix-list2-confirm-groupby-field-v0_3.ps1
+ create mode 100644 tools/eco-step-100-fix-list2-groupby-and-support-schema-v0_1.ps1
+ create mode 100644 tools/eco-step-100d-rewrite-points-list2-route-v0_1.ps1
+ create mode 100644 tools/eco-step-100e-fix-bare-field-identifiers-v0_1.ps1
+ create mode 100644 tools/eco-step-101-fix-pointid-crash-supportbutton-v0_1.ps1
+ create mode 100644 tools/eco-step-101-point-replicar-action-v0_1.ps1
+ create mode 100644 tools/eco-step-102-fix-pointid-bareidentifiers-v0_1.ps1
+ create mode 100644 tools/eco-step-103-fix-pointactionsinline-pointid-scope-v0_1.ps1
+ create mode 100644 tools/eco-step-104-stabilize-points-api-list2-counts-support-prisma-v0_1.ps1
+ create mode 100644 tools/eco-step-105-list2-autodetect-pointmodel-nonempty-v0_1.ps1
+ create mode 100644 tools/eco-step-106-seed-eco-pontos-dev-v0_1.ps1
+ create mode 100644 tools/eco-step-106b-fix-seed-eco-route-robusto-v0_1.ps1
+ create mode 100644 tools/eco-step-106c-fix-seed-eco-pragma-string-v0_1.ps1
+ create mode 100644 tools/eco-step-106c-fix-seed-eco-pragma-string-v0_2.ps1
+ create mode 100644 tools/eco-step-106d-rewrite-seed-eco-kind-required-v0_1.ps1
+ create mode 100644 tools/eco-step-106d-rewrite-seed-eco-kind-required-v0_2.ps1
+ create mode 100644 tools/eco-step-106d-rewrite-seed-eco-kind-required-v0_3.ps1
+ create mode 100644 tools/eco-step-106e-rewrite-seed-eco-route-stable-v0_1.ps1
+ create mode 100644 tools/eco-step-106f2-fix-seed-eco-dmmf-required-v0_2.ps1
+ create mode 100644 tools/eco-step-107g-fix-points-list-alias-and-front-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-10b-prisma-add-receipt-public.ps1
+ create mode 100644 tools/eco-step-10c-prisma-add-receipt-public-robust.ps1
+ create mode 100644 tools/eco-step-10d-prisma-cli-migrate-without-npx.ps1
+ create mode 100644 tools/eco-step-10e2-recibo-toggle-public-ui-and-api-safe.ps1
+ create mode 100644 tools/eco-step-10f-fix-db-drift-pickup-status.ps1
+ create mode 100644 tools/eco-step-10g-fix-db-pickup-status-column.ps1
+ create mode 100644 tools/eco-step-10h-ensure-prisma-cli-and-push.ps1
+ create mode 100644 tools/eco-step-10h2-ensure-prisma-cli-and-push-safe.ps1
+ create mode 100644 tools/eco-step-11-pedidos-actions-fechar-e-ver-recibo.ps1
+ create mode 100644 tools/eco-step-112-add-create-point-and-ui-v0_1.ps1
+ create mode 100644 tools/eco-step-112-add-create-point-and-ui-v0_2.ps1
+ create mode 100644 tools/eco-step-112-add-create-point-and-ui-v0_3.ps1
+ create mode 100644 tools/eco-step-113-add-point-actions-optimistic-v0_1.ps1
+ create mode 100644 tools/eco-step-113h-add-point-actions-optimistic-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-116-add-points2-alias-and-scan-v0_1.ps1
+ create mode 100644 tools/eco-step-117-fix-mural-links-and-actions-v0_1.ps1
+ create mode 100644 tools/eco-step-119-fix-muralclient-sort-and-base-filters-safe-v0_2.ps1
+ create mode 100644 tools/eco-step-119-fix-muralclient-sort-and-base-filters-v0_1.ps1
+ create mode 100644 tools/eco-step-119-fix-muralclient-sort-syntax-v0_1.ps1
+ create mode 100644 tools/eco-step-12-fix-api-points-slug-required.ps1
+ create mode 100644 tools/eco-step-120-upgrade-newpoint-geolocate-v0_1.ps1
+ create mode 100644 tools/eco-step-120i-upgrade-newpoint-geolocate-safe-v0_2.ps1
+ create mode 100644 tools/eco-step-120j-upgrade-newpoint-geolocate-safe-v0_3.ps1
+ create mode 100644 tools/eco-step-121-bootstrap-and-mapa-v0_1.ps1
+ create mode 100644 tools/eco-step-121-mural-readable-mode-v0_1.ps1
+ create mode 100644 tools/eco-step-121b-fix-mural-readable-styles-v0_1.ps1
+ create mode 100644 tools/eco-step-121c-fix-mural-readable-styles-template-v0_1.ps1
+ create mode 100644 tools/eco-step-121e-fix-bootstrap-and-readable-mural-v0_1.ps1
+ create mode 100644 tools/eco-step-121f-fix-bootstrap-and-readable-mural-v0_2.ps1
+ create mode 100644 tools/eco-step-121g-fix-bootstrap-and-readable-mural-v0_3.ps1
+ create mode 100644 tools/eco-step-122-add-eco-mapa-mvp-v0_1.ps1
+ create mode 100644 tools/eco-step-123-add-mapa-links-in-mural-v0_1.ps1
+ create mode 100644 tools/eco-step-124-fix-p-undefined-and-bootstrap-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-124c-fix-p-undefined-mapa-links-and-rewrite-bootstrap-v0_1.ps1
+ create mode 100644 tools/eco-step-124d-finish-pvar-scan-using-literalpath-v0_1.ps1
+ create mode 100644 tools/eco-step-125-fix-it-undefined-mural-v0_1.ps1
+ create mode 100644 tools/eco-step-126-fix-muralclient-openstreetmap-var-auto-v0_1.ps1
+ create mode 100644 tools/eco-step-127-fix-p-undefined-openstreetmap-and-sort-auto-v0_1.ps1
+ create mode 100644 tools/eco-step-129-remove-osm-inline-links-v0_1.ps1
+ create mode 100644 tools/eco-step-12c-fix-api-points-required-city.ps1
+ create mode 100644 tools/eco-step-132-mural-wide-and-autogrid-v0_1.ps1
+ create mode 100644 tools/eco-step-133-mapa-panel-iframe-actions-and-wide-v0_1.ps1
+ create mode 100644 tools/eco-step-133b-mapa-panel-iframe-actions-and-wide-safe-v0_2.ps1
+ create mode 100644 tools/eco-step-133c-mapa-panel-iframe-actions-and-wide-safe-v0_3.ps1
+ create mode 100644 tools/eco-step-134-inline-mapa-no-mural-v0_1.ps1
+ create mode 100644 tools/eco-step-134b-inline-mapa-no-mural-safe-v0_2.ps1
+ create mode 100644 tools/eco-step-134c-inline-mapa-no-mural-safe-v0_3.ps1
+ create mode 100644 tools/eco-step-134d-fix-bootstrap-writeutf8-newreport-v0_1.ps1
+ create mode 100644 tools/eco-step-134e-rewrite-bootstrap-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-135-inline-mapa-embed-osm-v0_1.ps1
+ create mode 100644 tools/eco-step-136-wide-shell-mural-mapa-v0_1.ps1
+ create mode 100644 tools/eco-step-136b-wide-shell-mural-mapa-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-137-inline-mapa-focus-links-v0_1.ps1
+ create mode 100644 tools/eco-step-137b-inline-mapa-focus-links-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-138-mural-wide-and-inline-mapa-style-v0_1.ps1
+ create mode 100644 tools/eco-step-138b-mural-wide-and-inline-mapa-style-safe-v0_2.ps1
+ create mode 100644 tools/eco-step-139-mural-desktop-grid-sticky-mapa-v0_1.ps1
+ create mode 100644 tools/eco-step-139-mural-wide-max-and-map-sticky-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-139c-mural-wide-sticky-map-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-139d-mural-wide-sticky-map-safe-v0_2.ps1
+ create mode 100644 tools/eco-step-139e-mural-wide-sticky-map-safe-v0_3.ps1
+ create mode 100644 tools/eco-step-13c-optional-operator-token-safe.ps1
+ create mode 100644 tools/eco-step-14-fix-api-points-city-required.ps1
+ create mode 100644 tools/eco-step-140c-fix-mural-page-mapopen-and-split-clean-v0_1.ps1
+ create mode 100644 tools/eco-step-140d-rewrite-mural-page-canonical-v0_1.ps1
+ create mode 100644 tools/eco-step-141-mural-split-wrapper-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-142-fix-mural-map-split-and-dev-webpack-v0_1.ps1
+ create mode 100644 tools/eco-step-142b-fix-mural-map-split-and-dev-webpack-safe-v0_2.ps1
+ create mode 100644 tools/eco-step-143-disable-turbopack-fix-invalid-sourcemap-v0_1.ps1
+ create mode 100644 tools/eco-step-144-fix-mural-searchparams-promise-v0_1.ps1
+ create mode 100644 tools/eco-step-144e-fix-mural-searchparams-promise-v0_1.ps1
+ create mode 100644 tools/eco-step-145-fix-dev-and-mural-searchparams-v0_1.ps1
+ create mode 100644 tools/eco-step-146-mural-map-toggle-and-fix-dev-script-v0_1.ps1
+ create mode 100644 tools/eco-step-146b-dev-scripts-and-allowedDevOrigins-v0_1.ps1
+ create mode 100644 tools/eco-step-147-contract-snapshot-v0_2.ps1
+ create mode 100644 tools/eco-step-147-contract-snapshot-v0_3.ps1
+ create mode 100644 tools/eco-step-147-contract-snapshot-v0_4.ps1
+ create mode 100644 tools/eco-step-148-hardening-alias-contract-v0_1.ps1
+ create mode 100644 tools/eco-step-148-hardening-alias-contract-v0_2.ps1
+ create mode 100644 tools/eco-step-148b-verify-and-smoke-autodev-v0_1.ps1
+ create mode 100644 tools/eco-step-149-fix-compile-blockers-v0_2.ps1
+ create mode 100644 tools/eco-step-149-fix-compile-blockers-v0_3.ps1
+ create mode 100644 tools/eco-step-14b-fix-api-points-city-required-robust.ps1
+ create mode 100644 tools/eco-step-15-harden-api-points-required-defaults.ps1
+ create mode 100644 tools/eco-step-150-fix-build-blockers-v0_1.ps1
+ create mode 100644 tools/eco-step-150-fix-build-blockers-v0_2.ps1
+ create mode 100644 tools/eco-step-150-fix-build-blockers-v0_3.ps1
+ create mode 100644 tools/eco-step-151-fix-turbopack-7errors-v0_1.ps1
+ create mode 100644 tools/eco-step-152-fix-3parsing-errors-v0_1.ps1
+ create mode 100644 tools/eco-step-153-fix-remaining-parsing-errors-v0_1.ps1
+ create mode 100644 tools/eco-step-154-fix-recibo-patch-string-v0_1.ps1
+ create mode 100644 tools/eco-step-155-fix-routehandler-params-promise-v0_1.ps1
+ create mode 100644 tools/eco-step-156-fix-pickuprequests-id-route-params-promise-v0_1.ps1
+ create mode 100644 tools/eco-step-157-fix-receipts-public-route-params-promise-v0_1.ps1
+ create mode 100644 tools/eco-step-158-fix-receipts-public-code-dup-v0_1.ps1
+ create mode 100644 tools/eco-step-159-fix-actor-cookieheader-v0_1.ps1
+ create mode 100644 tools/eco-step-159-fix-actor-cookieheader-v0_2.ps1
+ create mode 100644 tools/eco-step-16-harden-receipts-get-public-only.ps1
+ create mode 100644 tools/eco-step-160-fix-stray-action-token-v0_1.ps1
+ create mode 100644 tools/eco-step-161-fix-nextresponse-import-points-route-v0_1.ps1
+ create mode 100644 tools/eco-step-162-fix-prisma-import-points-route-v0_1.ps1
+ create mode 100644 tools/eco-step-163-fix-pickuprequest-receipt-ctx-v0_1.ps1
+ create mode 100644 tools/eco-step-163-fix-pickuprequest-receipt-ctx-v0_2.ps1
+ create mode 100644 tools/eco-step-164-fix-pickuprequest-receipt-link-v0_1.ps1
+ create mode 100644 tools/eco-step-164-fix-pickuprequest-receipt-link-v0_2.ps1
+ create mode 100644 tools/eco-step-165-fix-pickuprequest-receipt-nested-create-v0_1.ps1
+ create mode 100644 tools/eco-step-166-fix-pickuprequests-id-route-ctx-v0_1.ps1
+ create mode 100644 tools/eco-step-167-fix-pickuprequests-id-route-ctx-force-v0_1.ps1
+ create mode 100644 tools/eco-step-168-fix-pickuprequests-route-reqname-v0_1.ps1
+ create mode 100644 tools/eco-step-168-fix-pickuprequests-route-reqname-v0_2.ps1
+ create mode 100644 tools/eco-step-169-fix-pickuprequests-privacy-block-scope-v0_1.ps1
+ create mode 100644 tools/eco-step-16b-harden-receipts-get-public-only-robust.ps1
+ create mode 100644 tools/eco-step-16c-fix-receipts-guard-syntax.ps1
+ create mode 100644 tools/eco-step-16d-fix-api-points-route-rewrite-safe.ps1
+ create mode 100644 tools/eco-step-17-recibo-client-get-with-optional-token.ps1
+ create mode 100644 tools/eco-step-170-fix-pickuprequests-privacy-scope-robust-v0_1.ps1
+ create mode 100644 tools/eco-step-171-fix-pickuprequests-ecoIsOperator-param-v0_1.ps1
+ create mode 100644 tools/eco-step-173-fix-pickuprequests-privacy-block-into-get-v0_1.ps1
+ create mode 100644 tools/eco-step-174-fix-pickuprequests-get-param-v0_1.ps1
+ create mode 100644 tools/eco-step-175-move-pickuprequests-privacy-block-after-items-v0_1.ps1
+ create mode 100644 tools/eco-step-176-fix-pickuprequests-triage-sharecode-v0_1.ps1
+ create mode 100644 tools/eco-step-176-fix-pickuprequests-triage-sharecode-v0_2.ps1
+ create mode 100644 tools/eco-step-177-fix-api-points-fieldnames-never-v0_1.ps1
+ create mode 100644 tools/eco-step-178-fix-api-points-fieldnames-includes-global-v0_1.ps1
+ create mode 100644 tools/eco-step-179-fix-api-receipts-fieldnames-includes-v0_1.ps1
+ create mode 100644 tools/eco-step-18-pedidos-loop-attach-receipts-in-pickup-list.ps1
+ create mode 100644 tools/eco-step-180-fix-api-receipts-root-fieldnames-includes-v0_1.ps1
+ create mode 100644 tools/eco-step-181-fix-api-any-fieldnames-includes-global-v0_1.ps1
+ create mode 100644 tools/eco-step-182-fix-receipts-pickupdoneupdate-cast-v0_1.ps1
+ create mode 100644 tools/eco-step-183-fix-receipt-pack-nextresponse-buffer-v0_1.ps1
+ create mode 100644 tools/eco-step-184-fix-chamarcoleta-headers-v0_1.ps1
+ create mode 100644 tools/eco-step-185-fix-muralacoesclient-num-v0_1.ps1
+ create mode 100644 tools/eco-step-186-fix-muralpointactions-localcounts-v0_1.ps1
+ create mode 100644 tools/eco-step-187-fix-eco-pontos-id-sharelink-v0_1.ps1
+ create mode 100644 tools/eco-step-187b-fix-eco-pontos-id-sharelink-literalpath-v0_1.ps1
+ create mode 100644 tools/eco-step-189-fix-operatortriageboard-stray-call-v0_1.ps1
+ create mode 100644 tools/eco-step-18b-pedidos-loop-attach-receipts-in-pickup-list-safe.ps1
+ create mode 100644 tools/eco-step-18c-pedidos-attach-receipts-safe.ps1
+ create mode 100644 tools/eco-step-18d-attach-receipt-in-pickup-list-by-include-safe.ps1
+ create mode 100644 tools/eco-step-18e-attach-receipt-wrap-findmany-robust.ps1
+ create mode 100644 tools/eco-step-18e2-attach-receipt-wrap-findmany-robust-safe.ps1
+ create mode 100644 tools/eco-step-18f-attach-receipt-findmany-anywhere-safe.ps1
+ create mode 100644 tools/eco-step-18g-attach-receipts-in-pickup-list-postprocess-safe.ps1
+ create mode 100644 tools/eco-step-18h-attach-receipt-in-pickup-list-wrap-findmany.ps1
+ create mode 100644 tools/eco-step-18h2-fix-findmany-type-and-wrap-runtime.ps1
+ create mode 100644 tools/eco-step-19-pedidos-show-ver-recibo-link.ps1
+ create mode 100644 tools/eco-step-191-fix-receiptpublishbutton-token-header-v0_1.ps1
+ create mode 100644 tools/eco-step-192-fix-receiptsharebar-downloadcard-v0_1.ps1
+ create mode 100644 tools/eco-step-193-fix-receiptsharebar-sharecard-v0_1.ps1
+ create mode 100644 tools/eco-step-194-fix-receiptsharebar-sharecard-v0_1.ps1
+ create mode 100644 tools/eco-step-194-fix-receiptsharebar-sharecard-v0_2.ps1
+ create mode 100644 tools/eco-step-195-exclude-backups-from-ts-v0_1.ps1
+ create mode 100644 tools/eco-step-196-eslint9-ignores-and-any-policy-v0_1.ps1
+ create mode 100644 tools/eco-step-196b-eslint9-ignores-and-any-policy-v0_2.ps1
+ create mode 100644 tools/eco-step-197-unblock-eslint-errors-v0_1.ps1
+ create mode 100644 tools/eco-step-197b-fix-eslint9-flatconfig-v0_1.ps1
+ create mode 100644 tools/eco-step-198e-unblock-eslint9-and-build-v0_1.ps1
+ create mode 100644 tools/eco-step-199-eslint9-minsafe-and-dep-clean-v0_1.ps1
+ create mode 100644 tools/eco-step-200-stabilize-eslint9-and-verify-v0_1.ps1
+ create mode 100644 tools/eco-step-201-stabilize-eslint9-real-lint-v0_1.ps1
+ create mode 100644 tools/eco-step-201r-stabilize-eslint9-real-lint-v0_1.ps1
+ create mode 100644 tools/eco-step-202-eslint9-real-lint-minsafe-v0_1.ps1
+ create mode 100644 tools/eco-step-203-eslint9-finalize-real-lint-v0_1.ps1
+ create mode 100644 tools/eco-step-205-eslint9-bootstrap-runner-v0_1.ps1
+ create mode 100644 tools/eco-step-205b-fix-package-scripts-colon-v0_1.ps1
+ create mode 100644 tools/eco-step-206-fix-npm-runner-args-v0_1.ps1
+ create mode 100644 tools/eco-step-206b-dump-lint-output-v0_1.ps1
+ create mode 100644 tools/eco-step-207-fix-runner-argv-v0_1.ps1
+ create mode 100644 tools/eco-step-207b-fix-runner-argv-v0_1.ps1
+ create mode 100644 tools/eco-step-208-eslint-minsafe-noempty-finally-v0_1.ps1
+ create mode 100644 tools/eco-step-208-runner-stable-v0_1.ps1
+ create mode 100644 tools/eco-step-209-fix-eco-runner-tasks-v0_1.ps1
+ create mode 100644 tools/eco-step-20lite-fix-pickup-requests-type-parse.ps1
+ create mode 100644 tools/eco-step-21-foundation-lib.ps1
+ create mode 100644 tools/eco-step-21-pickup-requests-attach-receipt-and-pedidos-token.ps1
+ create mode 100644 tools/eco-step-210-fix-eco-runner-tasks-argv-v0_1.ps1
+ create mode 100644 tools/eco-step-212-fix-eslint-no-empty-blocks-v0_1.ps1
+ create mode 100644 tools/eco-step-212-rewrite-eco-runner-final-v0_1.ps1
+ create mode 100644 tools/eco-step-212-rewrite-eco-runner-v0_2.ps1
+ create mode 100644 tools/eco-step-213-rewrite-eco-runner-argv-fix-v0_1.ps1
+ create mode 100644 tools/eco-step-214-lint-hygiene-unusedvars-v0_1.ps1
+ create mode 100644 tools/eco-step-214b-lint-hygiene-unusedvars-v0_2.ps1
+ create mode 100644 tools/eco-step-214c-autofix-unusedvars-v0_1.ps1
+ create mode 100644 tools/eco-step-214c2-autofix-unusedvars-live-v0_2.ps1
+ create mode 100644 tools/eco-step-214c3-unusedvars-livefix-v0_3.ps1
+ create mode 100644 tools/eco-step-214d-fix-unusedvars-prefixunderscore-v0_1.ps1
+ create mode 100644 tools/eco-step-214e-fix-unusedvars-prefixunderscore-v0_1.ps1
+ create mode 100644 tools/eco-step-214f-repair-parsing-errors-v0_1.ps1
+ create mode 100644 tools/eco-step-215a-fix-unusedvars-remaining-v0_1.ps1
+ create mode 100644 tools/eco-step-215b-zero-warnings-v0_1.ps1
+ create mode 100644 tools/eco-step-215c-fix-unusedvars-and-stable-verify-v0_1.ps1
+ create mode 100644 tools/eco-step-215c2-fix-unusedvars-and-stable-verify-v0_2.ps1
+ create mode 100644 tools/eco-step-215d-zero-warnings-robust-v0_1.ps1
+ create mode 100644 tools/eco-step-216-verify-build-and-git-snapshot-v0_1.ps1
+ create mode 100644 tools/eco-step-216b-fix-build-catch-e-v0_1.ps1
+ create mode 100644 tools/eco-step-216b2-fix-build-catch-e-v0_2.ps1
+ create mode 100644 tools/eco-step-216b3-fix-build-catch-e-and-verify-v0_3.ps1
+ create mode 100644 tools/eco-step-216c-fix-pickup-requests-id-v0_1.ps1
+ create mode 100644 tools/eco-step-216d-zero-warnings-final-v0_1.ps1
+ create mode 100644 tools/eco-step-216e-fix-catch-param-usage-and-verify-v0_1.ps1
+ create mode 100644 tools/eco-step-216f-zero-warnings-report-route-v0_1.ps1
+ create mode 100644 tools/eco-step-216g-git-snapshot-and-commit-v0_1.ps1
+ create mode 100644 tools/eco-step-216g-git-snapshot-and-commit-v0_2.ps1
+ create mode 100644 tools/eco-step-216g-git-snapshot-and-commit-v0_3.ps1
+ create mode 100644 tools/eco-step-216g-git-snapshot-and-commit-v0_4.ps1
+ create mode 100644 tools/eco-step-216g-git-snapshot-and-commit-v0_5.ps1
+ create mode 100644 tools/eco-step-21b-pickup-requests-attach-receipt-and-pedidos-token-safe.ps1
+ create mode 100644 tools/eco-step-21c-pickup-requests-attach-receipt-and-pedidos-token-placeholder-safe.ps1
+ create mode 100644 tools/eco-step-21c2-fix-ui-pedidos-token-inject-safe.ps1
+ create mode 100644 tools/eco-step-21c3-dedupe-ecoWithReceipt-in-pickup-requests.ps1
+ create mode 100644 tools/eco-step-21d-recover-route-and-receiptlink-client-token.ps1
+ create mode 100644 tools/eco-step-21e-fix-pickup-requests-dedupe-reinject.ps1
+ create mode 100644 tools/eco-step-22-pickup-requests-receipt-privacy.ps1
+ create mode 100644 tools/eco-step-22b-fix-pickup-requests-privacy-dedupe.ps1
+ create mode 100644 tools/eco-step-22c-fix-pickup-requests-privacy-redeclare-var.ps1
+ create mode 100644 tools/eco-step-22d-normalize-pickup-requests-dedupe-helpers.ps1
+ create mode 100644 tools/eco-step-23-fix-pickup-requests-dedupe-all-helpers.ps1
+ create mode 100644 tools/eco-step-23-issue-receipt-from-pedidos.ps1
+ create mode 100644 tools/eco-step-23-receipt-public-toggle.ps1
+ create mode 100644 tools/eco-step-23a-operator-panel-and-receiptlink-fetch.ps1
+ create mode 100644 tools/eco-step-23b-pedidos-add-operator-shortcut.ps1
+ create mode 100644 tools/eco-step-23b-receipt-public-toggle-fix.ps1
+ create mode 100644 tools/eco-step-24-public-receipt-page.ps1
+ create mode 100644 tools/eco-step-24b-public-receipt-page-safe.ps1
+ create mode 100644 tools/eco-step-25-receiptlink-public-aware-and-copylink.ps1
+ create mode 100644 tools/eco-step-26-public-receipt-sharebar-copy-wa.ps1
+ create mode 100644 tools/eco-step-27-receipt-card-share-endpoint-3x4.ps1
+ create mode 100644 tools/eco-step-28b-receipt-share-webshare-and-1x1-safe.ps1
+ create mode 100644 tools/eco-step-28c-receipt-share-webshare-and-1x1-safe-markers.ps1
+ create mode 100644 tools/eco-step-28c-receipt-share-webshare-and-1x1-safe2.ps1
+ create mode 100644 tools/eco-step-28c-receipt-sharebar-webshare-1x1-hardening.ps1
+ create mode 100644 tools/eco-step-28c-receipt-sharebar-webshare-safe.ps1
+ create mode 100644 tools/eco-step-29-operator-panel-mvp.ps1
+ create mode 100644 tools/eco-step-29-public-receipt-og-metadata.ps1
+ create mode 100644 tools/eco-step-29-receipt-share-link-copy-whatsapp.ps1
+ create mode 100644 tools/eco-step-29-receipt-sharepack-text-and-preview.ps1
+ create mode 100644 tools/eco-step-30-operator-panel-filters-route-export.ps1
+ create mode 100644 tools/eco-step-30-receipt-sharepack-captions.ps1
+ create mode 100644 tools/eco-step-31-operator-triage-kanban.ps1
+ create mode 100644 tools/eco-step-31-receipt-sharepack-toast.ps1
+ create mode 100644 tools/eco-step-32-operator-triage-route-of-day.ps1
+ create mode 100644 tools/eco-step-32-receipt-share-url-fallback.ps1
+ create mode 100644 tools/eco-step-32b-operator-triage-route-of-day-safe.ps1
+ create mode 100644 tools/eco-step-32c-fix-eco-smoke-triagem.ps1
+ create mode 100644 tools/eco-step-33-pickup-status-and-bulk.ps1
+ create mode 100644 tools/eco-step-33-receipt-share-pack-zip.ps1
+ create mode 100644 tools/eco-step-33b-pickup-status-and-bulk-safe.ps1
+ create mode 100644 tools/eco-step-34-operator-triage-bulk-ui.ps1
+ create mode 100644 tools/eco-step-35-operator-triage-day-close-summary.ps1
+ create mode 100644 tools/eco-step-36c-operator-day-card-3x4-safe.ps1
+ create mode 100644 tools/eco-step-36d-route-day-card-nojsx.ps1
+ create mode 100644 tools/eco-step-36e-route-day-card-og-flexfix.ps1
+ create mode 100644 tools/eco-step-36f-day-card-1x1-buttons-and-webshare.ps1
+ create mode 100644 tools/eco-step-37-public-day-share-page.ps1
+ create mode 100644 tools/eco-step-37b-public-day-share-page-safe.ps1
+ create mode 100644 tools/eco-step-37c-fix-async-params-headers.ps1
+ create mode 100644 tools/eco-step-38b-wire-day-share-link-and-smoke-safe.ps1
+ create mode 100644 tools/eco-step-38c-wire-day-share-link-and-smoke-safe.ps1
+ create mode 100644 tools/eco-step-39-share-day-caption-and-smoke.ps1
+ create mode 100644 tools/eco-step-40-fix-triage-day-share-block.ps1
+ create mode 100644 tools/eco-step-43-share-day-hardening.ps1
+ create mode 100644 tools/eco-step-43b-share-day-hardening.ps1
+ create mode 100644 tools/eco-step-44-day-close-store.safe.ps1
+ create mode 100644 tools/eco-step-45-triagem-shortcut-s-dia.ps1
+ create mode 100644 tools/eco-step-46-fix-day-close-autofill.ps1
+ create mode 100644 tools/eco-step-48-fix-route-day-card-display-flex.ps1
+ create mode 100644 tools/eco-step-48-hotfix-safe-day-card-and-day-close-guard.ps1
+ create mode 100644 tools/eco-step-49-bootstrap-tijolos.ps1
+ create mode 100644 tools/eco-step-50-prisma-eco-day-close.ps1
+ create mode 100644 tools/eco-step-50b-fix-prisma-exec-and-run-migrate.ps1
+ create mode 100644 tools/eco-step-50c-prisma-drift-reset-sqlite.ps1
+ create mode 100644 tools/eco-step-51-doctor-and-new-tijolo.ps1
+ create mode 100644 tools/eco-step-51-prisma-eco-day-close-model-migrate.ps1
+ create mode 100644 tools/eco-step-52-day-close-migrate-and-api-upsert.ps1
+ create mode 100644 tools/eco-step-53-fix-day-close-accept-day-d-date.ps1
+ create mode 100644 tools/eco-step-53b-fix-day-close-accept-day-d-date.ps1
+ create mode 100644 tools/eco-step-54-fix-day-close-safeDay-regex.ps1
+ create mode 100644 tools/eco-step-54-fix-safeDay-normalize-day-close.ps1
+ create mode 100644 tools/eco-step-54b-day-close-debug-v0_1.ps1
+ create mode 100644 tools/eco-step-55-day-close-ui-v0_1.ps1
+ create mode 100644 tools/eco-step-56-day-close-card-v0_1.ps1
+ create mode 100644 tools/eco-step-56c-fix-card-og-display-v0_1.ps1
+ create mode 100644 tools/eco-step-57-month-close-transparencia-v0_1.ps1
+ create mode 100644 tools/eco-step-58-share-pack-v0_1.ps1
+ create mode 100644 tools/eco-step-58b-fix-hydration-share-links-v0_1.ps1
+ create mode 100644 tools/eco-step-59-month-close-mvp-v0_1.ps1
+ create mode 100644 tools/eco-step-60-fix-share-month-params-unwrap-v0_1.ps1
+ create mode 100644 tools/eco-step-61-critical-points-mvp-v0_1.ps1
+ create mode 100644 tools/eco-step-61-critical-points-mvp-v0_2.ps1
+ create mode 100644 tools/eco-step-62-mutirao-from-point-mvp-v0_1.ps1
+ create mode 100644 tools/eco-step-63-mutirao-finish-share-card-v0_1.ps1
+ create mode 100644 tools/eco-step-64-mutirao-upload-before-after-v0_1.ps1
+ create mode 100644 tools/eco-step-64-mutirao-upload-before-after-v0_2.ps1
+ create mode 100644 tools/eco-step-65-recibos-hub-v0_1.ps1
+ create mode 100644 tools/eco-step-66-finish-mutirao-resolve-point-proof-v0_1.ps1
+ create mode 100644 tools/eco-step-66b-patch-mutirao-client-proofnote-v0_1.ps1
+ create mode 100644 tools/eco-step-66c-patch-mutirao-client-proofnote-literalpath-v0_1.ps1
+ create mode 100644 tools/eco-step-67-point-resolution-reopen-v0_1.ps1
+ create mode 100644 tools/eco-step-68-lock-resolve-via-mutirao-and-30d-stats-v0_1.ps1
+ create mode 100644 tools/eco-step-69-mapa-abandono-x-cuidado-v0_1.ps1
+ create mode 100644 tools/eco-step-69b-mapa-abandono-x-cuidado-fix-quotes-v0_1.ps1
+ create mode 100644 tools/eco-step-70-point-detail-resolve-v0_1.ps1
+ create mode 100644 tools/eco-step-71-mutirao-finish-resolve-point-v0_1.ps1
+ create mode 100644 tools/eco-step-72-mutirao-finish-upload-before-after-v0_1.ps1
+ create mode 100644 tools/eco-step-72c-fix-finalizar-page-params-await-v0_1.ps1
+ create mode 100644 tools/eco-step-72d-rewrite-finalizar-page-params-await-v0_1.ps1
+ create mode 100644 tools/eco-step-73-mutirao-share-card-v0_1.ps1
+ create mode 100644 tools/eco-step-74-mutirao-card-before-after-v0_2.ps1
+ create mode 100644 tools/eco-step-75-add-share-buttons-mutirao-pages-v0_1.ps1
+ create mode 100644 tools/eco-step-76-mutirao-proof-in-finalize-v0_1.ps1
+ create mode 100644 tools/eco-step-77-point-proof-badge-v0_1.ps1
+ create mode 100644 tools/eco-step-78-points-list-map-status-markers-v0_1.ps1
+ create mode 100644 tools/eco-step-79-resolve-point-manual-v0_1.ps1
+ create mode 100644 tools/eco-step-80-share-point-card-v0_1.ps1
+ create mode 100644 tools/eco-step-81-mural-do-cuidado-pontos-v0_1.ps1
+ create mode 100644 tools/eco-step-82-share-point-card-v0_1.ps1
+ create mode 100644 tools/eco-step-83-point-reactions-actions-v0_1.ps1
+ create mode 100644 tools/eco-step-84-mural-acoes-view-v0_1.ps1
+ create mode 100644 tools/eco-step-85-mural-integrar-actionbar-v0_1.ps1
+ create mode 100644 tools/eco-step-85b-mural-integrar-actionbar-fix-addRange-v0_1.ps1
+ create mode 100644 tools/eco-step-86-confirmado-badge-ui-v0_1.ps1
+ create mode 100644 tools/eco-step-86b-confirmado-badge-ui-smart-v0_1.ps1
+ create mode 100644 tools/eco-step-87-mural-topo-fixo-v0_1.ps1
+ create mode 100644 tools/eco-step-87b-fix-mural-page-p-div-nesting-v0_1.ps1
+ create mode 100644 tools/eco-step-87c-rewrite-mural-page-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-88-mural-topbar-client-v0_1.ps1
+ create mode 100644 tools/eco-step-89-mural-topbar-transparencia-v0_1.ps1
+ create mode 100644 tools/eco-step-90-mural-strong-light-actions-v0_1.ps1
+ create mode 100644 tools/eco-step-91-mural-chamados-topbar-wa-safe-v0_1.ps1
+ create mode 100644 tools/eco-step-91b-fix-mural-imports-default-v0_1.ps1
+ create mode 100644 tools/eco-step-92b-confirmado-badge-actionsinline-v0_1.ps1
+ create mode 100644 tools/eco-step-92c-mural-confirmado-badge-counts-v0_2.ps1
+ create mode 100644 tools/eco-step-93-mural-confirmados-view-v0_1.ps1
+ create mode 100644 tools/eco-step-94-mural-api-confirm-counts-v0_1.ps1
+ create mode 100644 tools/eco-step-95-fix-points-list2-unterminated-string-v0_1.ps1
+ create mode 100644 tools/eco-step-95-fix-points-list2-unterminated-string-v0_2.ps1
+ create mode 100644 tools/eco-step-95-fix-points-list2-unterminated-string-v0_3.ps1
+ create mode 100644 tools/eco-step-95-fix-points-list2-unterminated-string-v0_4.ps1
+ create mode 100644 tools/eco-step-96-points-alias-route-v0_1.ps1
+ create mode 100644 tools/eco-step-97-fix-points-list2-and-confirmados-v0_1.ps1
+ create mode 100644 tools/eco-step-98-confirm-badge-and-points-alias-v0_1.ps1
+ create mode 100644 tools/eco-step-99-point-support-action-v0_1.ps1
+ create mode 100644 tools/eco-step-99c-fix-support-relation-and-list2-strings-v0_1.ps1
+ create mode 100644 tools/eco-step-99c-fix-support-relation-and-list2-strings-v0_2.ps1
+ create mode 100644 tools/new-tijolo.ps1
+ create mode 100644 tools/seed-missoes-dev-v0_1.ps1
+
+---- git status (after) ----
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
