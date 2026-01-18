@@ -1,30 +1,22 @@
 import Link from "next/link";
 
-export default async function SucessoPage({ searchParams }: any) {
-  const sp = (await searchParams) ?? searchParams ?? {};
-  const id = sp?.id ? String(sp.id) : "";
-
+export default function Page({ searchParams }: { searchParams?: Record<string, string | string[] | undefined> }) {
+  const codeRaw = searchParams?.code;
+  const code = Array.isArray(codeRaw) ? codeRaw[0] : codeRaw;
   return (
-    <div className="stack">
-      <div className="toolbar">
-        <h1>Pedido enviado</h1>
-        <Link className="btn" href="/">Início</Link>
-      </div>
-
-      <div className="card">
-        <h2>✅ Registrado</h2>
-        <p><small>Se precisar, guarde esse código:</small></p>
-        <p style={{ fontFamily:"ui-monospace, SFMono-Regular, Menlo, monospace" }}>{id || "(sem id)"}</p>
-
-        <div className="toolbar">
-          <Link className="primary" href="/chamar">Fazer outro</Link>
-          <Link className="btn" href="/pedidos">Ver pedidos</Link>
+    <main className="mx-auto max-w-2xl p-6">
+      <h1 className="text-2xl font-bold">Pedido enviado</h1>
+      <p className="mt-2 text-sm opacity-80">Se precisar, voce pode acompanhar na lista de pedidos.</p>
+      {code ? (
+        <div className="mt-4 rounded border border-neutral-800 bg-neutral-950 p-3">
+          <div className="text-xs opacity-70">Codigo</div>
+          <div className="font-mono">{code}</div>
         </div>
-
-        <p><small>
-          Próximo: Recibo ECO (QR/código curto + card 3:4 compartilhável).
-        </small></p>
+      ) : null}
+      <div className="mt-6 flex gap-3">
+        <Link className="rounded bg-emerald-500 px-4 py-2 font-semibold text-black" href="/pedidos">Ver pedidos</Link>
+        <Link className="rounded border border-neutral-700 px-4 py-2" href="/eco">Voltar ao ECO</Link>
       </div>
-    </div>
+    </main>
   );
 }

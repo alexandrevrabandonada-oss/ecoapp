@@ -21,7 +21,7 @@ export default function ShareBar({ path, label }: { path: string; label: string 
         setCopied(true);
         setTimeout(() => setCopied(false), 1200);
       }
-    } catch {}
+    } catch { void 0; }
   }
 
   async function onCopy() {
@@ -29,7 +29,7 @@ export default function ShareBar({ path, label }: { path: string; label: string 
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
-    } catch {}
+    } catch { void 0; }
   }
 
   const wa = useMemo(() => {

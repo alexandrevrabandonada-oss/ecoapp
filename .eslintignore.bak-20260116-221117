@@ -1,0 +1,8 @@
+.next/
+node_modules/
+dist/
+reports/
+tools/_patch_backup/
+tools/_db_backup/
+tools/_patch_backup/**
+reports/**

@@ -3,14 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "lint:debug": "node ./node_modules/eslint/bin/eslint.js --print-config src/app/layout.tsx",
+    "dev:webpack": "set NEXT_DISABLE_TURBOPACK=1 && next dev",
+    "dev:turbo": "next dev --turbo",
+    "lint": "node ./node_modules/eslint/bin/eslint.js src --max-warnings 9999",
+    "verify": "npm run lint && npm run build",
+    "lint:fix": "node ./node_modules/eslint/bin/eslint.js src --fix --max-warnings 9999",
+    "dev": "set NEXT_DISABLE_TURBOPACK=1 && next dev",
     "start": "next start",
-    "lint": "eslint",
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "^6.0.0",
+    "@prisma/client": "^6.19.1",
+    "jszip": "^3.10.1",
     "nanoid": "^5.1.6",
     "next": "16.0.10",
     "qrcode": "^1.5.4",
@@ -19,13 +25,19 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@next/eslint-plugin-next": "^16.1.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20.19.27",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
-    "prisma": "^6.0.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^17.0.0",
+    "prisma": "^6.19.1",
     "tailwindcss": "^4",
     "typescript": "^5.9.3"
   }

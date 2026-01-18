@@ -33,9 +33,14 @@ model PickupRequest {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  status    PickupRequestStatus  @default(OPEN)
-  receipt   Receipt?
+  status     PickupRequestStatus @default(OPEN)
+  receipt    Receipt?
   ecoReceipt EcoReceipt?
+
+  // ECO_STEP33_STATUS_ROUTE_START
+  routeDay    String?
+  collectedAt DateTime?
+  // ECO_STEP33_STATUS_ROUTE_END
 }
 
 model Service {
@@ -95,8 +100,8 @@ model Receipt {
   createdAt DateTime      @default(now())
   requestId String        @unique
   request   PickupRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  public    Boolean       @default(false)
 }
-
 
 // === ECO: PickupRequestStatus (v0) ===
 enum PickupRequestStatus {
@@ -106,20 +111,122 @@ enum PickupRequestStatus {
   CANCELED
 }
 
-
 // === ECO: EcoReceipt (Recibo) v0 ===
 model EcoReceipt {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  shareCode String   @unique
-  public    Boolean  @default(false)
+  shareCode String  @unique
+  public    Boolean @default(false)
 
-  summary   String?
-  items     String?
-  operator  String?
+  summary  String?
+  items    String?
+  operator String?
 
-  requestId String   @unique
+  requestId String        @unique
   request   PickupRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+}
+
+enum PickupStatus {
+  NEW
+  IN_ROUTE
+  DONE
+  CANCELED
+}
+
+model EcoDayClose {
+  id        String   @id @default(cuid())
+  day       String   @unique
+  summary   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EcoMonthClose {
+  id        String   @id @default(cuid())
+  month     String   @unique
+  summary   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum EcoCriticalKind {
+  LIXO_ACUMULADO
+  ENTULHO_VOLUMOSO
+  QUEIMADA_FUMACA
+  ESGOTO_VAZAMENTO
+  OLEO_QUIMICO
+  SENSIVEL_INDUSTRIAL
+  OUTRO
+}
+
+model EcoCriticalPoint {
+  id           String                    @id @default(cuid())
+  kind         EcoCriticalKind
+  lat          Float
+  lng          Float
+  note         String?
+  photoUrl     String?
+  actor        String? // opcional (anon/guest)
+  confirmCount Int                       @default(0)
+  status       String                    @default("OPEN") // OPEN|RESOLVED|MUTIRAO
+  createdAt    DateTime                  @default(now())
+  updatedAt    DateTime                  @updatedAt
+  confirms     EcoCriticalPointConfirm[]
+  mutirao      EcoMutirao?
+  supports     EcoPointSupport[]
+  replicates   EcoPointReplicate[]
+}
+
+model EcoCriticalPointConfirm {
+  id        String           @id @default(cuid())
+  pointId   String
+  actor     String
+  createdAt DateTime         @default(now())
+  point     EcoCriticalPoint @relation(fields: [pointId], references: [id], onDelete: Cascade)
+
+  @@unique([pointId, actor])
+  @@index([pointId])
+}
+
+model EcoMutirao {
+  id          String           @id @default(cuid())
+  pointId     String           @unique
+  title       String?
+  note        String?
+  startAt     DateTime
+  durationMin Int              @default(90)
+  status      String           @default("SCHEDULED") // SCHEDULED|DONE|CANCELLED
+  beforeUrl   String?
+  afterUrl    String?
+  checklist   Json?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  point       EcoCriticalPoint @relation(fields: [pointId], references: [id], onDelete: Cascade)
+
+  @@index([startAt])
+}
+
+model EcoPointSupport {
+  id        String   @id @default(cuid())
+  pointId   String
+  note      String?
+  createdAt DateTime @default(now())
+
+  point EcoCriticalPoint @relation(fields: [pointId], references: [id], onDelete: Cascade)
+
+  @@index([pointId])
+}
+
+model EcoPointReplicate {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  pointId     String
+  fingerprint String
+
+  point EcoCriticalPoint @relation(fields: [pointId], references: [id], onDelete: Cascade)
+
+  @@unique([pointId, fingerprint])
+  @@index([pointId])
 }

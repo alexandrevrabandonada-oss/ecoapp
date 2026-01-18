@@ -1,0 +1,13 @@
+import MuralClient from "../MuralClient";
+
+export const dynamic = "force-dynamic";
+
+export default function Page() {
+  return (
+    <main style={{ padding: 16, maxWidth: 1100, margin: "0 auto" }}>
+      <h1 style={{ margin: "0 0 8px 0" }}>Mural — Confirmados</h1>
+      <p style={{ margin: "0 0 14px 0", opacity: 0.85 }}>Pontos que ja tiveram ✅ confirmações (ordenado por mais confirmados).</p>
+      <MuralClient base="confirmados" />
+    </main>
+  );
+}

@@ -3,6 +3,17 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+// ECO_STEP21C_PEDIDOS_TOKEN
+const ECO_TOKEN_KEY = "eco_operator_token";
+function ecoReadToken() {
+  if (typeof window === "undefined") return "";
+  try { return localStorage.getItem(ECO_TOKEN_KEY) || ""; } catch { return ""; }
+}
+function ecoAuthHeaders() {
+  const t = (ecoReadToken() || "").trim();
+  return t ? { "x-eco-token": t } : {};
+}
+// ECO_STEP21C_PEDIDOS_TOKEN_END
 type Receipt = { shareCode: string } | null;
 
 type Item = {
@@ -23,7 +34,15 @@ export default function ChamarColetaPage() {
 
   async function load() {
     setLoading(true);
-    const res = await fetch("/api/pickup-requests", { cache: "no-store" });
+    // ECO_HEADERS_CLEAN_START
+    const __ecoRawHeaders = (ecoAuthHeaders() as Record<string, unknown>) || {};
+    const __ecoHeaders: Record<string, string> = {};
+    for (const [k, v] of Object.entries(__ecoRawHeaders)) {
+      if (typeof v === "string" && v) __ecoHeaders[k] = v;
+    }
+    // ECO_HEADERS_CLEAN_END
+    const res = await fetch("/api/pickup-requests", {
+    headers: __ecoHeaders, cache: "no-store" });
     const json = (await res.json()) as unknown;
     setItems(Array.isArray(json) ? (json as Item[]) : []);
     setLoading(false);

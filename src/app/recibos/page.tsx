@@ -1,74 +1,80 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { headers } from "next/headers";
 
-type Receipt = {
-  id: string;
-  createdAt: string;
-  shareCode: string;
-  public: boolean;
-  summary?: string | null;
-  request?: { name?: string | null; address?: string | null } | null;
-};
+export const runtime = "nodejs";
 
-export default function RecibosPage() {
-  const [items, setItems] = useState<Receipt[]>([]);
-  const [loading, setLoading] = useState(true);
+async function originFromHeaders() {
+  const h = await headers();
+  const proto = h.get("x-forwarded-proto") ?? "http";
+  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
+  return proto + "://" + host;
+}
 
-  async function load() {
-    setLoading(true);
-    const res = await fetch("/api/receipts", { cache: "no-store" });
-    const json = (await res.json()) as unknown;
-    const anyJson = json as any;
-const arr = Array.isArray(anyJson) ? anyJson : Array.isArray(anyJson?.items) ? anyJson.items : [];
-setItems(arr as Receipt[]);
-setLoading(false);
-  }
+function getCode(r: any) {
+  return r?.shareCode ?? r?.code ?? r?.id ?? "";
+}
 
-  useEffect(() => { load().catch(() => setLoading(false)); }, []);
+export default async function RecibosPage() {
+  const origin = await originFromHeaders();
+  const res = await fetch(origin + "/api/receipts", { cache: "no-store" });
+  const txt = await res.text();
+  let json: any = null;
+  try { json = JSON.parse(txt); } catch { json = { raw: txt }; }
+
+  const receipts: any[] = Array.isArray(json?.items) ? json.items : [];
 
   return (
-    <div className="stack">
-      <div className="card">
-        <div className="toolbar">
-          <h1 style={{ margin: 0 }}>Recibos ECO</h1>
-          <span className="badge">v0</span>
+    <main className="p-4 max-w-4xl mx-auto space-y-4">
+      <header className="space-y-2">
+        <h1 className="text-2xl font-bold">Recibos</h1>
+        <div className="flex gap-3 flex-wrap">
+          <Link className="underline" href="/pedidos">← Pedidos</Link>
+          <Link className="underline" href="/chamar">Chamar coleta</Link>
         </div>
-        <p style={{ marginTop: 8 }}>
-          <small>Lista de recibos gerados. Cada recibo tem link público.</small>
-        </p>
-        <div className="toolbar" style={{ marginTop: 10 }}>
-          <Link className="btn" href="/">HUB</Link>
-          <Link className="btn" href="/chamar-coleta">Chamar Coleta</Link>
-          <button className="btn" onClick={() => load()}>Atualizar</button>
-        </div>
-      </div>
+      </header>
 
-      <div className="card">
-        {loading ? <p><small>Carregando…</small></p> : null}
-        {!loading && items.length === 0 ? <p><small>Nenhum recibo ainda.</small></p> : null}
-
-        <div className="stack" style={{ marginTop: 10 }}>
-          {items.map((r) => (
-            <div key={r.id} className="card" style={{ padding: 12 }}>
-              <div className="toolbar">
-                <b>{r.summary || "Recibo ECO"}</b>
-                <span className="badge">{r.public ? "PUBLIC" : "PRIVATE"}</span>
-              </div>
-              <p style={{ marginTop: 6 }}>
-                <small className="muted">{new Date(r.createdAt).toLocaleString()}</small>
-              </p>
-              {r.request?.name ? <p style={{ marginTop: 6 }}><small><b>Nome:</b> {r.request.name}</small></p> : null}
-              {r.request?.address ? <p style={{ marginTop: 6 }}><small><b>End:</b> {r.request.address}</small></p> : null}
-              <div className="toolbar" style={{ marginTop: 10 }}>
-                <Link className="primary" href={"/recibo/" + r.shareCode}>Abrir</Link>
-                <Link className="btn" href="/chamar-coleta">Voltar</Link>
-              </div>
-            </div>
-          ))}
+      {!res.ok && (
+        <div className="rounded border p-3">
+          <p className="font-semibold text-red-600">Falha ao listar /api/receipts</p>
+          <pre className="text-xs whitespace-pre-wrap break-words">{txt}</pre>
         </div>
-      </div>
-    </div>
+      )}
+
+      {res.ok && receipts.length === 0 && (
+        <p className="text-sm opacity-70">Nenhum recibo ainda.</p>
+      )}
+
+      {res.ok && receipts.length > 0 && (
+        <div className="rounded border overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-black/5">
+              <tr>
+                <th className="text-left p-2">Code</th>
+                <th className="text-left p-2">Resumo</th>
+                <th className="text-left p-2">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {receipts.map((r, idx) => {
+                const code = getCode(r);
+                return (
+                  <tr key={String(code || idx)} className="border-t">
+                    <td className="p-2 font-mono text-xs break-all">{code || "-"}</td>
+                    <td className="p-2">{r?.summary ?? ""}</td>
+                    <td className="p-2">
+                      {code ? (
+                        <Link className="underline" href={"/recibo/" + encodeURIComponent(code)}>Ver</Link>
+                      ) : (
+                        <span className="opacity-60">sem code</span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </main>
   );
 }

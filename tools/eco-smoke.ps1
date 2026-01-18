@@ -26,6 +26,8 @@ Hit "/coleta"
 Hit "/chamar-coleta"
 Hit "/chamar-coleta/novo"
 Hit "/recibos"
+  '/operador/triagem'
+Hit "/operador"
 Hit "/api/services"
 Hit "/api/points"
 Hit "/api/pickup-requests"

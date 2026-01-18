@@ -81,6 +81,7 @@ export default function PointDetail({ id }: { id: string }) {
     }
   }
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load(); /* eslint-disable-next-line */ }, [id]);
 
   const canSave = useMemo(() => {

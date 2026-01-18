@@ -1,104 +1,60 @@
-import { NextResponse } from "next/server";
-import { Prisma, PrismaClient } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient } from '@prisma/client';
 
-export const runtime = "nodejs";
+export const runtime = 'nodejs';
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 const prisma = globalForPrisma.prisma ?? new PrismaClient();
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
-function lowerCamel(s: string) {
-  return s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+function eco29GetToken(req: Request): string | null {
+  const h = req.headers.get('x-eco-token') ?? req.headers.get('authorization') ?? '';
+  if (h.startsWith('Bearer ')) return h.slice(7).trim();
+  if (h && !h.includes(' ')) return h.trim();
+  return null;
 }
 
-function pickupMeta() {
-  const model = Prisma.dmmf.datamodel.models.find((m) => m.name === "PickupRequest");
-  const fieldNames = (model?.fields ?? []).map((f) => f.name);
-  return { fieldNames };
+function eco29AllowedTokens(): string[] {
+  const raw = (process.env.ECO_OPERATOR_TOKENS ?? process.env.ECO_OPERATOR_TOKEN ?? process.env.ECO_TOKEN ?? '').trim();
+  if (!raw) return [];
+  return raw.split(',').map(s => s.trim()).filter(Boolean);
 }
 
-function pickupInclude() {
-  const { fieldNames } = pickupMeta();
-  const include: any = {};
-  if (fieldNames.includes("receipt")) include.receipt = true;
-  if (fieldNames.includes("ecoReceipt")) include.ecoReceipt = true;
-  return include;
+function eco29IsOperator(req: Request): boolean {
+  const tok = eco29GetToken(req);
+  if (!tok) return false;
+  const allowed = eco29AllowedTokens();
+  if (allowed.length === 0) return true; // dev fallback
+  return allowed.includes(tok);
 }
 
-function getPickupDelegateKey() {
-  const prismaAny = prisma as unknown as Record<string, any>;
-  const modelName = "PickupRequest";
-  const tried: string[] = [];
-
-  const keys = [lowerCamel(modelName), modelName, "pickupRequests"];
-  for (const key of keys) {
-    tried.push(key);
-    const d = prismaAny[key];
-    if (d && typeof d.findUnique === "function") return { key, tried };
-  }
-
-  return { key: null as string | null, tried };
-}
-
-type Ctx = { params: { id: string } | Promise<{ id: string }> };
-
-export async function GET(_req: Request, ctx: Ctx) {
-  try {
-    const { id } = await Promise.resolve(ctx.params);
-
-    const found = getPickupDelegateKey();
-    if (!found.key) {
-      return NextResponse.json(
-        { error: "pickup_delegate_missing", tried: found.tried },
-        { status: 500 }
-      );
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ _id: string }> }) {
+    const { _id: _id } = await params;
+try {
+    if (!eco29IsOperator(req)) {
+      return NextResponse.json({ ok: false, error: 'forbidden' }, { status: 403 });
     }
+    const { _id: idParam } = await params;
+const _id = String(idParam ?? "").trim();
+    if (!_id) return NextResponse.json({ ok: false, error: 'missing id' }, { status: 400 });
 
-    const prismaAny = prisma as unknown as Record<string, any>;
-    const item = await prismaAny[found.key].findUnique({
-      where: { id },
-      include: pickupInclude(),
-    });
-
-    if (!item) return NextResponse.json({ error: "not_found" }, { status: 404 });
-    return NextResponse.json({ delegate: found.key, item });
-  } catch (e) {
-    const detail = e instanceof Error ? e.message : String(e);
-    return NextResponse.json({ error: "pickup_get_failed", detail }, { status: 500 });
-  }
-}
-
-export async function PATCH(req: Request, ctx: Ctx) {
-  try {
-    const { id } = await Promise.resolve(ctx.params);
-
-    const found = getPickupDelegateKey();
-    if (!found.key) {
-      return NextResponse.json(
-        { error: "pickup_delegate_missing", tried: found.tried },
-        { status: 500 }
-      );
-    }
-
-    const body = (await req.json().catch(() => ({}))) as any;
+    const body = await req.json().catch(() => ({} as any));
     const data: any = {};
 
-    if (typeof body?.status === "string" && body.status) data.status = body.status;
-    if (typeof body?.name === "string") data.name = body.name;
-    if (typeof body?.phone === "string") data.phone = body.phone;
-    if (typeof body?.address === "string") data.address = body.address;
-    if (typeof body?.notes === "string") data.notes = body.notes;
+    if (typeof body.status === 'string') data['status'] = body.status;
 
-    const prismaAny = prisma as unknown as Record<string, any>;
-    const item = await prismaAny[found.key].update({
-      where: { id },
+
+    if (Object.keys(data).length === 0) {
+      return NextResponse.json({ ok: false, error: 'no changes' }, { status: 400 });
+    }
+
+    const updated = await (prisma as any).pickupRequest.update({
+      where: { '_id': _id },
       data,
-      include: pickupInclude(),
     });
 
-    return NextResponse.json({ delegate: found.key, item });
-  } catch (e) {
-    const detail = e instanceof Error ? e.message : String(e);
-    return NextResponse.json({ error: "pickup_patch_failed", detail }, { status: 500 });
+    return NextResponse.json({ ok: true, item: updated });
+  } catch (e: any) {
+    return NextResponse.json({ ok: false, error: String(e?.message ?? e) }, { status: 500 });
   }
 }
